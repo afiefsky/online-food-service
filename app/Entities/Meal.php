@@ -8,7 +8,7 @@ class Meal extends Model
 {
     protected $table = 'meals';
 
-    protected $fillable = ['name', 'img_url', 'vendor_id', 'meal_type_id', 'is_available'];
+    protected $fillable = ['name', 'display_name', 'img_url', 'vendor_id', 'meal_type_id', 'is_available'];
 
     public function price() {
         $this->hasMany(MealPrice::class);

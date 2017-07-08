@@ -9,14 +9,18 @@ use Intervention\Image\ImageManagerStatic as Image;
 class MealController extends APIController {
 
     private $meal;
+    private $price;
+
 
     /**
      * MealController constructor.
      * @param MealService $meal
+     * @param MealPriceService $price
      */
-    public function __construct(MealService $meal)
+    public function __construct(MealService $meal, MealPriceService $price)
     {
         $this->meal = $meal;
+        $this->price = $price;
     }
 
     public function create(Request $request)
