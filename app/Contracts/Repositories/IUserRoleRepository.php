@@ -14,5 +14,10 @@ interface IUserRoleRepository extends RepositoryInterface
      */
     public function __construct(Container $app, UserRole $model);
 
+    /**
+     * @param $user_id
+     * @param $role_id
+     * @return mixed
+     */
     public function createUser($user_id, $role_id);
 }

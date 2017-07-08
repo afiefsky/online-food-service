@@ -77,9 +77,14 @@ class UserService {
         return $customer;
     }
 
-    public function create($data)
+    /**
+     * @param $data
+     * @param $avatar_url
+     * @return mixed
+     */
+    public function create($data, $avatar_url)
     {
-        $user = $this->user->createUser($data);
+        $user = $this->user->createUser($data, $avatar_url);
 
         return $user;
     }

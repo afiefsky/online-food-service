@@ -3,28 +3,32 @@
 namespace OFS\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 use OFS\Services\CustomerService;
 use OFS\Services\UserRoleService;
 use OFS\Services\UserService;
-
+use OFS\Services\CourierService;
 
 class UserController extends APIController {
 
     private $user;
     private $customer;
     private $userRole;
+    private $courier;
 
     /**
      * UserController constructor.
      * @param UserService $user
      * @param CustomerService $customer
      * @param UserRoleService $userRole
+     * @param CourierService $courier
      */
-    public function __construct(UserService $user, CustomerService $customer, UserRoleService $userRole)
+    public function __construct(UserService $user, CustomerService $customer, UserRoleService $userRole, CourierService $courier)
     {
         $this->user = $user;
         $this->customer = $customer;
         $this->userRole = $userRole;
+        $this->courier = $courier;
     }
 
     /**
@@ -116,18 +120,62 @@ class UserController extends APIController {
      */
     public function createCustomer(Request $request)
     {
-        // request = first_name, last_name, email, password, phone, avatar_url
-        $user = $this->user->create($request->all());
         try {
+            if ($request->hasFile('avatar_url')) {
+                $filename = sprintf('%s.%s', md5($request->email), $request->avatar_url->extension());
+                $path = sprintf(storage_path('app/avatar/' . $filename));
+                $avatar_url = "avatar\\" . $filename;
+                Image::make($request->avatar_url->getRealPath())
+                    ->fit(220, 220)
+                    ->save($path)
+                    ->destroy();
+            } else {
+                $request['avatar_url'] = '';
+            }
+            // request = first_name, last_name, email, password, phone, avatar_url
+            $user = $this->user->create($request->all(), $avatar_url);
             if ($user) {
                 $this->customer->create($user['id']);
                 $this->userRole->create($user['id'], 4);
 
-                return $this->responseJson("User with email [" . $request['email'] . "] has been created!!!", 200);
+                return $this->responseJson("User customer with email [" . $request['email'] . "] has been created!!!", 200);
             }
-            return $this->responseJson("User with email [" . $request['email'] . "] is already exists!!!", 400);
+            return $this->responseJson("User customer with email [" . $request['email'] . "] is already exists!!!", 400);
         } catch (\Exception $e) {
-            return $this->responseJson("User with email [" . $request['email'] . "] is already exists!!!", 400);
+            return $this->responseJson("User customer with email [" . $request['email'] . "] is already exists!!!", 400);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function createCourier(Request $request)
+    {
+
+        try {
+            if ($request->hasFile('avatar_url')) {
+                $filename = sprintf('%s.%s', md5($request->email), $request->avatar_url->extension());
+                $path = sprintf(storage_path('app/avatar/' . $filename));
+                $avatar_url = "avatar\\" . $filename;
+                Image::make($request->avatar_url->getRealPath())
+                    ->fit(220, 220)
+                    ->save($path)
+                    ->destroy();
+            } else {
+                $request['avatar_url'] = '';
+            }
+            // request = first_name, last_name, email, password, phone, avatar_url
+            $user = $this->user->create($request->all(), $avatar_url);
+            if ($user) {
+                $this->courier->create($user['id']);
+                $this->userRole->create($user['id'], 3);
+
+                return $this->responseJson("User courier with email [" . $request['email'] . "] has been created!!!", 200);
+            }
+            return $this->responseJson("User courier with email [" . $request['email'] . "] is already exists!!!", 400);
+        } catch (\Exception $e) {
+            return $this->responseJson("User courier with email [" . $request['email'] . "] is already exists!!!", 400);
         }
     }
 }

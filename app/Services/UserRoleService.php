@@ -16,6 +16,11 @@ class UserRoleService {
         $this->userRole = $userRole;
     }
 
+    /**
+     * @param $user_id
+     * @param $role_id
+     * @return int
+     */
     public function create($user_id, $role_id)
     {
         $data = $this->userRole->createUser($user_id, $role_id);

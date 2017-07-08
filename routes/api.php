@@ -47,6 +47,7 @@ $api->version('v1', function($api) {
             // Courier
             $api->get('courier/', 'UserController@courierIndex');
             $api->get('courier/index', 'UserController@courierIndex');
+            $api->post('courier/create', 'UserController@createCourier');
         });
     });
 });

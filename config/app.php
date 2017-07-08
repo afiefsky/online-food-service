@@ -233,7 +233,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         // Aliases for additional packages
-        'Entrust'   => Zizaco\Entrust\EntrustFacade::class
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

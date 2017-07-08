@@ -85,7 +85,12 @@ class UserRepository extends AbstractRepository implements IUserRepository
         return $customer->toArray();
     }
 
-    public function createUser($data)
+    /**
+     * @param $data
+     * @param $avatar_url
+     * @return bool|mixed
+     */
+    public function createUser($data, $avatar_url)
     {
         try {
             $user = $this->create([
@@ -94,7 +99,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'phone' => $data['phone'],
-                'avatar_url' => $data['avatar_url']
+                'avatar_url' => $avatar_url
             ]);
             return $user;
         } catch (\Exception $e) {

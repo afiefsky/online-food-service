@@ -12,6 +12,11 @@ class UserRoleRepository extends AbstractRepository implements IUserRoleReposito
         parent::__construct($app, $model);
     }
 
+    /**
+     * @param $user_id
+     * @param $role_id
+     * @return bool
+     */
     public function createUser($user_id, $role_id)
     {
         $this->create([

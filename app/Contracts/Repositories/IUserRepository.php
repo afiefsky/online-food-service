@@ -47,5 +47,10 @@ interface IUserRepository extends RepositoryInterface
      */
     public function findCustomerByKeyword($keyword);
 
-    public function createUser($data);
+    /**
+     * @param $data
+     * @param $avatar_url
+     * @return mixed
+     */
+    public function createUser($data, $avatar_url);
 }
