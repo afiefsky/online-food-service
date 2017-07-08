@@ -15,8 +15,8 @@ class CreateMealsTable extends Migration
     {
         Schema::create('meals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('display_name');
+            $table->string('name')->nullable();
+            $table->string('display_name')->nullable();
             $table->text('img_url')->nullable();
 
             $table->integer('vendor_id')->unsigned();
