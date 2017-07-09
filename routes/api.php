@@ -29,6 +29,7 @@ $api->version('v1', function($api) {
     $api->group([ 'namespace' => 'OFS\Http\Controllers\API'], function() use ($api) {
         $api->get('/', 'APIController@info');
         $api->get('info', 'APIController@info');
+        $api->post('login', 'AuthenticationController@login');
 
         $api->group(['prefix' => 'user'], function() use ($api) {
             // User

@@ -2,10 +2,14 @@
 
 namespace OFS\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
-class User extends Model
+class User extends Authenticatable
 {
+    use Notifiable, EntrustUserTrait;
+
     protected $table = 'users';
 
     protected $fillable = ['first_name', 'last_name', 'email', 'password', 'phone', 'avatar_url'];
