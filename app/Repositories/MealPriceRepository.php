@@ -12,4 +12,18 @@ class MealPriceRepository extends AbstractRepository implements IMealPriceReposi
     {
         parent::__construct($app, $model);
     }
+
+    public function addMealPrice($id, $price)
+    {
+        $this->create([
+            'meal_id' => $id,
+            'price' => $price,
+            'is_valid' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'invalid_at' => ''
+        ]);
+
+        return true;
+    }
 }

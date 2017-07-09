@@ -3,6 +3,7 @@
 namespace OFS\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use OFS\Services\MealPriceService;
 use OFS\Services\MealService;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -10,7 +11,6 @@ class MealController extends APIController {
 
     private $meal;
     private $price;
-
 
     /**
      * MealController constructor.
@@ -23,15 +23,32 @@ class MealController extends APIController {
         $this->price = $price;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function create(Request $request)
     {
+        $inputs = $request->only(['display_name', 'img_url', 'vendor_id', 'meal_type_id', 'is_available', 'price']);
         try {
-            $inputs = $request->only(['display_name', 'img_url', 'vendor_id', 'meal_type_id', 'is_available']);
+            if ($request->hasFile('img_url')) {
+                $filename = sprintf('%s.%s', md5($request->display_name), $request->img_url->extension());
+                $path = sprintf(storage_path('app/meal/' . $filename));
+                $img_url = "meal\\" . $filename;
+                $inputs['img_url'] = $img_url;
+                Image::make($request->img_url->getRealPath())
+                    ->fit(220, 220)
+                    ->save($path)
+                    ->destroy();
+            } else {
+                $request['img_url'] = '';
+            }
             $inputs['name'] = str_replace(' ', '_', strtolower($inputs['display_name']));
 
-            $this->meal->create($inputs);
+            $meal = $this->meal->create($inputs);
+            $this->price->create($meal['id'], $inputs['price']);
 
-            return $this->responseJson($inputs);
+            return $this->responseJson("Meal " . $inputs['display_name'] . " has been created!!!", 200);
         } catch (\Exception $e) {
             return $this->responseJson($e->getMessage(), 400);
         }

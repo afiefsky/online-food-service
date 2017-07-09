@@ -14,5 +14,9 @@ interface IMealRepository extends RepositoryInterface
      */
     public function __construct(Container $app, Meal $model);
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function createMeal($data);
 }

@@ -17,10 +17,14 @@ class MealService {
         $this->meal = $meal;
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function create($data)
     {
-        $this->meal->createMeal($data);
+        $meal = $this->meal->createMeal($data);
 
-        return true;
+        return $meal;
     }
 }

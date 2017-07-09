@@ -8,4 +8,6 @@ use OFS\Entities\MealPrice;
 interface IMealPriceRepository extends RepositoryInterface
 {
     public function __construct(Container $app, MealPrice $model);
+
+    public function addMealPrice($id, $price);
 }

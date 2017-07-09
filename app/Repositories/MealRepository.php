@@ -13,9 +13,13 @@ class MealRepository extends AbstractRepository implements IMealRepository
         parent::__construct($app, $model);
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function createMeal($data)
     {
-        $this->create([
+        $meal = $this->create([
             'name' => $data['name'],
             'display_name' => $data['display_name'],
             'img_url' => $data['img_url'],
@@ -26,6 +30,6 @@ class MealRepository extends AbstractRepository implements IMealRepository
             'updated_at' => Carbon::now()
         ]);
 
-        return true;
+        return $meal;
     }
 }

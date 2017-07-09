@@ -16,4 +16,11 @@ class MealPriceService
     {
         $this->price = $price;
     }
+
+    public function create($id, $price)
+    {
+        $this->price->addMealPrice($id, $price);
+
+        return true;
+    }
 }
