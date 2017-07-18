@@ -132,17 +132,20 @@ class UserController extends APIController {
             } else {
                 $request['avatar_url'] = '';
             }
+            $avatar_url = $request->all()['avatar_url'];
+
             // request = first_name, last_name, email, password, phone, avatar_url
             $user = $this->user->create($request->all(), $avatar_url);
+
             if ($user) {
                 $this->customer->create($user['id']);
                 $this->userRole->create($user['id'], 4);
 
                 return $this->responseJson("User customer with email [" . $request['email'] . "] has been created!!!", 200);
             }
-            return $this->responseJson("User customer with email [" . $request['email'] . "] is already exists!!!", 400);
+            return $this->responseJson([], 400);
         } catch (\Exception $e) {
-            return $this->responseJson("User customer with email [" . $request['email'] . "] is already exists!!!", 400);
+            return $this->responseJson([], 400);
         }
     }
 

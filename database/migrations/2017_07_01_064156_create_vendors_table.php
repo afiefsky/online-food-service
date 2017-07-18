@@ -18,7 +18,7 @@ class CreateVendorsTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('phone');
-            $table->text('logo_url');
+            $table->text('logo_url')->nullable();
             $table->timestamps();
         });
     }

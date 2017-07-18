@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone')->nullable();
-            $table->text('avatar_url');
+            $table->text('avatar_url')->nullable();
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
         });

@@ -101,6 +101,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
                 'phone' => $data['phone'],
                 'avatar_url' => $avatar_url
             ]);
+
             return $user;
         } catch (\Exception $e) {
             return false;
