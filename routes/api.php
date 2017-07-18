@@ -31,7 +31,7 @@ $api->version('v1', function($api) {
         $api->get('info', 'APIController@info');
         $api->post('login', 'AuthenticationController@login');
 
-        $api->group(['prefix' => 'user'], function() use ($api) {
+        $api->group(['prefix' => 'user', 'middleware' => 'jwt.auth'], function() use ($api) {
             // User
             $api->get('/', 'UserController@userIndex');
             $api->get('index', 'UserController@userIndex');
