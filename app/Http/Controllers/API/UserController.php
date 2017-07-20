@@ -8,6 +8,7 @@ use OFS\Services\CustomerService;
 use OFS\Services\UserRoleService;
 use OFS\Services\UserService;
 use OFS\Services\CourierService;
+use OFS\Services\VendorService;
 
 class UserController extends APIController {
 
@@ -15,6 +16,7 @@ class UserController extends APIController {
     private $customer;
     private $userRole;
     private $courier;
+    private $vendor;
 
     /**
      * UserController constructor.
@@ -22,13 +24,15 @@ class UserController extends APIController {
      * @param CustomerService $customer
      * @param UserRoleService $userRole
      * @param CourierService $courier
+     * @param VendorService $vendor
      */
-    public function __construct(UserService $user, CustomerService $customer, UserRoleService $userRole, CourierService $courier)
+    public function __construct(UserService $user, CustomerService $customer, UserRoleService $userRole, CourierService $courier, VendorService $vendor)
     {
         $this->user = $user;
         $this->customer = $customer;
         $this->userRole = $userRole;
         $this->courier = $courier;
+        $this->vendor = $vendor;
     }
 
     /**
@@ -179,6 +183,37 @@ class UserController extends APIController {
             return $this->responseJson("User courier with email [" . $request['email'] . "] is already exists!!!", 400);
         } catch (\Exception $e) {
             return $this->responseJson("User courier with email [" . $request['email'] . "] is already exists!!!", 400);
+        }
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function createVendor(Request $request)
+    {
+        try {
+            if ($request->hasFile('logo_url')) {
+                $filename = sprintf('%s.%s', md5($request->address), $request->logo_url->extension());
+                $path = sprintf(storage_path('app/vendor/' . $filename));
+                $request['logo'] = "vendor\\" . bcrypt($filename);
+                Image::make($request->logo_url->getRealPath())
+                    ->fit(220, 220)
+                    ->save($path)
+                    ->destroy();
+            } else {
+                $request['logo'] = '';
+            }
+            $inputs = $request->only(['name', 'address', 'phone', 'logo_url', 'logo']);
+
+            $vendor = $this->vendor->create($inputs);
+
+            if ($vendor) {
+                return $this->responseJson("Vendor with name " . $request['name'] . " has been created!", 200);
+            }
+
+            return $this->responseJson([], 400);
+        } catch (\Exception $e) {
+            return $this->responseJson([], 400);
         }
     }
 }

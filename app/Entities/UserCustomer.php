@@ -11,6 +11,10 @@ class UserCustomer extends Model
     protected $fillable = ['user_id', 'is_active'];
 
     // Relationship to Order Entities = One to Many; 'One' customer has/can do 'Many' orders
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function order() {
         return $this->hasMany(Order::class);
     }

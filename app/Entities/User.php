@@ -24,11 +24,18 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'users_roles', 'user_id', 'role_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function customer() {
         return $this->hasOne(UserCustomer::class);
     }
 
     // Relationship to UserCourier Entities = One to One
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function courier() {
         return $this->hasOne(UserCourier::class);
     }

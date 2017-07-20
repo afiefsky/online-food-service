@@ -27,6 +27,7 @@ $api->version('v1', function($api) {
     });
 
     $api->group([ 'namespace' => 'OFS\Http\Controllers\API'], function() use ($api) {
+        // Root API
         $api->get('/', 'APIController@info');
         $api->get('info', 'APIController@info');
         $api->post('login', 'AuthenticationController@login');
@@ -43,7 +44,6 @@ $api->version('v1', function($api) {
             $api->get('customer/index', 'UserController@customerIndex');
             $api->get('customer/{customer_id}', 'UserController@findCustomerById');
             $api->post('customer/search', 'UserController@findCustomerByKeyword');
-//            $api->post('customer/create', 'UserController@createCustomer');
 
             // Courier
             $api->get('courier/', 'UserController@courierIndex');
@@ -52,11 +52,18 @@ $api->version('v1', function($api) {
         });
 
         // User Without JWT Auth
-        $api->post('user/customer/create', 'UserController@createCustomer');
+        $api->group(['prefix' => 'user'], function() use ($api) {
+            $api->post('customer/create', 'UserController@createCustomer');
+        });
 
         // Meal With JWT Auth
         $api->group(['prefix' => 'meal', 'middleware' => 'jwt.auth'], function() use ($api) {
             $api->post('create', 'MealController@create');
+        });
+
+        // Vendor Without JWT Auth
+        $api->group(['prefix' => 'vendor'], function() use ($api) {
+            $api->post('create', 'UserController@createVendor');
         });
 
     });

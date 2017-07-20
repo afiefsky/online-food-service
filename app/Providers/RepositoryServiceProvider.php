@@ -9,6 +9,7 @@ use OFS\Contracts\Repositories\IUserRepository;
 use OFS\Contracts\Repositories\IUserRoleRepository;
 use OFS\Contracts\Repositories\IMealRepository;
 use OFS\Contracts\Repositories\IMealPriceRepository;
+use OFS\Contracts\Repositories\IVendorRepository;
 /** Repository */
 use OFS\Repositories\CourierRepository;
 use OFS\Repositories\CustomerRepository;
@@ -16,6 +17,7 @@ use OFS\Repositories\UserRepository;
 use OFS\Repositories\UserRoleRepository;
 use OFS\Repositories\MealRepository;
 use OFS\Repositories\MealPriceRepository;
+use OFS\Repositories\VendorRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -32,5 +34,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ICourierRepository::class, CourierRepository::class);
         $this->app->bind(IMealRepository::class, MealRepository::class);
         $this->app->bind(IMealPriceRepository::class, MealPriceRepository::class);
+        $this->app->bind(IVendorRepository::class, VendorRepository::class);
     }
 }
