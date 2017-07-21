@@ -102,7 +102,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
                 'avatar_url' => $avatar_url
             ]);
 
-            return $user;
+            return $user->toArray();
         } catch (\Exception $e) {
             return false;
         }

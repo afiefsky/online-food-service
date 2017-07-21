@@ -14,4 +14,6 @@ interface IAdministratorRepository extends RepositoryInterface
      * @param UserAdministrator $model
      */
     public function __construct(Container $app, UserAdministrator $model);
+
+    public function createAdministrator($id);
 }

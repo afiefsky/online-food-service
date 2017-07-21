@@ -18,5 +18,15 @@ class AdministratorRepository extends AbstractRepository implements IAdministrat
         parent::__construct($app, $model);
     }
 
+    public function createAdministrator($id)
+    {
+        $administrator = $this->create([
+            'user_id' => $id,
+            'is_active' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
 
+        return $administrator;
+    }
 }
