@@ -1,6 +1,6 @@
 <?php
 
-namespace VTI\MKG\Services;
+namespace OFS\Services;
 
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;

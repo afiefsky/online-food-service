@@ -7,7 +7,8 @@ use OFS\Services\MealPriceService;
 use OFS\Services\MealService;
 use Intervention\Image\ImageManagerStatic as Image;
 
-class MealController extends APIController {
+class MealController extends APIController
+{
 
     private $meal;
     private $price;
@@ -37,9 +38,9 @@ class MealController extends APIController {
                 $img_url = "meal\\" . $filename;
                 $inputs['img_url'] = $img_url;
                 Image::make($request->img_url->getRealPath())
-                    ->fit(220, 220)
-                    ->save($path)
-                    ->destroy();
+                ->fit(220, 220)
+                ->save($path)
+                ->destroy();
             } else {
                 $request['img_url'] = '';
             }

@@ -9,14 +9,17 @@ use OFS\Services\UserRoleService;
 use OFS\Services\UserService;
 use OFS\Services\CourierService;
 use OFS\Services\VendorService;
+use OFS\Services\AdministratorService;
 
-class UserController extends APIController {
+class UserController extends APIController
+{
 
     private $user;
     private $customer;
     private $userRole;
     private $courier;
     private $vendor;
+    private $administrator;
 
     /**
      * UserController constructor.
@@ -25,14 +28,22 @@ class UserController extends APIController {
      * @param UserRoleService $userRole
      * @param CourierService $courier
      * @param VendorService $vendor
+     * @param AdministratorService $administrator
      */
-    public function __construct(UserService $user, CustomerService $customer, UserRoleService $userRole, CourierService $courier, VendorService $vendor)
-    {
+    public function __construct(
+        UserService $user,
+        CustomerService $customer,
+        UserRoleService $userRole,
+        CourierService $courier,
+        VendorService $vendor,
+        AdministratorService $administrator
+    ) {
         $this->user = $user;
         $this->customer = $customer;
         $this->userRole = $userRole;
         $this->courier = $courier;
         $this->vendor = $vendor;
+        $this->administrator = $administrator;
     }
 
     /**
@@ -203,9 +214,15 @@ class UserController extends APIController {
             } else {
                 $request['logo'] = '';
             }
-            $inputs = $request->only(['name', 'address', 'phone', 'logo_url', 'logo']);
 
-            $vendor = $this->vendor->create($inputs);
+            // Vendor Insertion Logic Here
+            $inputs['vendor'] = $request->only(['name', 'address', 'phone', 'logo_url', 'logo']);
+            $vendor = $this->vendor->create($inputs['vendor']);
+
+            // User Insertion Logic Here
+            $inputs['user'] = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar_url']);
+            $user = $this->user->create($inputs['user'], $request['avatar_url']);
+
 
             if ($vendor) {
                 return $this->responseJson("Vendor with name " . $request['name'] . " has been created!", 200);
