@@ -27,8 +27,7 @@ class CreateOrdersTable extends Migration
             $table->integer('tariff_distance_id')->unsigned();
             $table->foreign('tariff_distance_id')->references('id')->on('tariff_distance');
 
-            $table->boolean('is_delivered');
-            $table->boolean('is_cancelled');
+            $table->enum('delivery_status', ['0', '1'])->nullable();
             $table->timestamps();
         });
     }

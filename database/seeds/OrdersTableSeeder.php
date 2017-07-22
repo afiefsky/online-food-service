@@ -19,8 +19,7 @@ class OrdersTableSeeder extends Seeder
                 'courier_id' => $c,
                 'distance_took' => 2,
                 'tariff_distance_id' => 1,
-                'is_delivered' => 1,
-                'is_cancelled' => 0,
+                'delivery_status' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -32,8 +31,7 @@ class OrdersTableSeeder extends Seeder
             'courier_id' => 1,
             'distance_took' => 7,
             'tariff_distance_id' => 2,
-            'is_delivered' => 0,
-            'is_cancelled' => 1,
+            'delivery_status' => '0',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
