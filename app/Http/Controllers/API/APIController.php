@@ -12,14 +12,14 @@ class APIController extends BaseController
 {
     use ValidatesRequests, AuthorizesRequests, DispatchesJobs, JsonResponse;
 
-	public function info()
+    public function info()
     {
-		return $this->responseJson([[
-			'app' => config('app.name'),
-			'name' => config('api.name'),
-			'version' => config('api.version'),
-			'gd' => (function_exists('gd_info'))? gd_info() : 'No gd_info',
-			'imagick' => (extension_loaded('imagick'))? 'Imagick Loaded' : 'Imagick not installed',
-		]]);
-	}
+        return $this->responseJson([[
+            'app' => config('app.name'),
+            'name' => config('api.name'),
+            'version' => config('api.version'),
+            'gd' => (function_exists('gd_info'))? gd_info() : 'No gd_info',
+            'imagick' => (extension_loaded('imagick'))? 'Imagick Loaded' : 'Imagick not installed',
+        ]]);
+    }
 }

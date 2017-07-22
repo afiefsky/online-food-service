@@ -33,7 +33,7 @@ class MealController extends APIController
         $inputs = $request->only(['display_name', 'img_url', 'vendor_id', 'meal_type_id', 'is_available', 'price']);
         try {
             if ($request->hasFile('img_url')) {
-                $filename = sprintf('%s.%s', md5($request->display_name), $request->img_url->extension());
+                $filename = sprintf('%s.%s', encrypt($request->display_name), $request->img_url->extension());
                 $path = sprintf(storage_path('app/meal/' . $filename));
                 $img_url = "meal\\" . $filename;
                 $inputs['img_url'] = $img_url;

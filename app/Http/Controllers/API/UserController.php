@@ -209,8 +209,9 @@ class UserController extends APIController
     public function createVendor(Request $request)
     {
         try {
+            // Image for vendor logo
             if ($request->hasFile('logo_url')) {
-                $filename = sprintf('%s.%s', md5($request->address), $request->logo_url->extension());
+                $filename = sprintf('%s.%s', md5($request->email), $request->logo_url->extension());
                 $path = sprintf(storage_path('app/vendor/' . $filename));
                 $request['logo'] = "vendor\\" . bcrypt($filename);
                 Image::make($request->logo_url->getRealPath())
@@ -220,9 +221,21 @@ class UserController extends APIController
             } else {
                 $request['logo'] = '';
             }
-
             $inputs['vendor'] = $request->only(['name', 'address', 'phone', 'logo_url', 'logo']);
-            $inputs['user'] = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar_url']);
+
+            // Image for vendor administrator avater
+            if ($request->hasFile('avatar_url')) {
+                $filename = sprintf('%s.%s', md5($request->email), $request->avatar_url->extension());
+                $path = sprintf(storage_path('app\\avatar\\' . $filename));
+                $request['avatar'] = "avatar\\" . $filename;
+                Image::make($request->avatar_url->getRealPath())
+                    ->fit(220, 220)
+                    ->save($path)
+                    ->destroy();
+            } else {
+                $request['avatar'] = '';
+            }
+            $inputs['user'] = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar']);
 
             $vendor = $this->vendor->create($inputs['vendor']);
             $user = $this->user->create($inputs['user'], $request['avatar_url']);
@@ -236,7 +249,7 @@ class UserController extends APIController
 
             return $this->responseJson([], 400);
         } catch (\Exception $e) {
-            return $this->responseJson([], 400);
+//            return $this->responseJson([], 400);
         }
     }
 }

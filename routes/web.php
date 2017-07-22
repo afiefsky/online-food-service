@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// User
+Route::get('storage/avatar/{filename}', function ($filename)
+{
+    return Image::make(storage_path('app\\avatar\\' . $filename))->response();
+});
+
+// Meal
+Route::get('storage/meal/{filename}', function ($filename)
+{
+    return Image::make(storage_path('app\\meal\\' . $filename))->response();
+});
