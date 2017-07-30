@@ -19,4 +19,40 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
     {
         parent::__construct($app, $model);
     }
+
+    public function createOrder($data)
+    {
+        try {
+            $order = $this->create([
+                'customer_id' => $data['customer_id'],
+                'courier_id' => $data['courier_id'],
+                'distance_took' => $data['distance_took'],
+                'tariff_distance_id' => $data['tariff_distance_id'],
+                'delivery_status' => $data['delivery_status']
+            ]);
+
+            if ($order) {
+                return $order->toArray();
+            }
+            return false;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function confirmOrder($data)
+    {
+        try {
+            $order = $this->update([
+                'delivery_status' => $data['delivery_status']
+            ], $data['id']);
+
+            if ($order) {
+                return true;
+            }
+            return false;
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

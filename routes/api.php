@@ -66,5 +66,10 @@ $api->version('v1', function($api) {
             $api->post('create', 'UserController@createVendor');
         });
 
+        // Order With JWT Auth
+        $api->group(['prefix' => 'order', 'middleware' => 'jwt.auth'], function() use ($api) {
+            $api->post('create', 'OrderController@create');
+            $api->post('confirm/{order_id}', 'OrderController@confirm');
+        });
     });
 });

@@ -5,6 +5,7 @@ use Illuminate\Support\ServiceProvider;
 /** Interface */
 use OFS\Contracts\Repositories\ICourierRepository;
 use OFS\Contracts\Repositories\ICustomerRepository;
+use OFS\Contracts\Repositories\IOrderRepository;
 use OFS\Contracts\Repositories\IUserRepository;
 use OFS\Contracts\Repositories\IUserRoleRepository;
 use OFS\Contracts\Repositories\IMealRepository;
@@ -15,6 +16,7 @@ use OFS\Contracts\Repositories\IUserVendorRepository;
 /** Repository */
 use OFS\Repositories\CourierRepository;
 use OFS\Repositories\CustomerRepository;
+use OFS\Repositories\OrderRepository;
 use OFS\Repositories\UserRepository;
 use OFS\Repositories\UserRoleRepository;
 use OFS\Repositories\MealRepository;
@@ -41,5 +43,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IVendorRepository::class, VendorRepository::class);
         $this->app->bind(IAdministratorRepository::class, AdministratorRepository::class);
         $this->app->bind(IUserVendorRepository::class, UserVendorRepository::class);
+        $this->app->bind(IOrderRepository::class, OrderRepository::class);
     }
 }
