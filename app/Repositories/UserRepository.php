@@ -93,6 +93,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
     public function createUser($data, $avatar_url)
     {
         try {
+
             $user = $this->create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
