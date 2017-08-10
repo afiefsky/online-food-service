@@ -14,5 +14,14 @@ interface IVendorRepository extends RepositoryInterface
      */
     public function __construct(Container $app, Vendor $model);
 
+    /**
+     * @return mixed
+     */
+    public function index();
+
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function createVendor($data);
 }

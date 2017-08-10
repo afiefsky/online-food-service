@@ -34,6 +34,7 @@ $api->version('v1', function($api) {
 
         // User With JWT Auth
         $api->group(['prefix' => 'user', 'middleware' => 'jwt.auth'], function() use ($api) {
+
             $api->get('/', 'UserController@userIndex');
             $api->get('index', 'UserController@userIndex');
             $api->get('vendor/{vendor_id}', 'UserController@userIndexByVendorId');
@@ -63,7 +64,9 @@ $api->version('v1', function($api) {
 
         // Vendor Without JWT Auth
         $api->group(['prefix' => 'vendor'], function() use ($api) {
-            $api->post('create', 'UserController@createVendor');
+            $api->get('/', 'VendorController@index');
+            $api->get('/index', 'VendorController@index');
+            $api->post('create', 'VendorController@create');
         });
 
         // Order With JWT Auth

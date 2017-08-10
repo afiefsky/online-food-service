@@ -17,6 +17,13 @@ class VendorRepository extends AbstractRepository implements IVendorRepository
         parent::__construct($app, $model);
     }
 
+    public function index()
+    {
+        $vendors = $this->all()->toArray();
+
+        return $vendors;
+    }
+
     /**
      * @param $data
      * @param $logo_url
