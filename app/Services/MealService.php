@@ -27,4 +27,11 @@ class MealService {
 
         return $meal;
     }
+
+    public function get($vendor_id)
+    {
+        $meals = $this->meal->get($vendor_id);
+
+        return $meals;
+    }
 }

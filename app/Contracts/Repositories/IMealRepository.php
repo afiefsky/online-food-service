@@ -19,4 +19,6 @@ interface IMealRepository extends RepositoryInterface
      * @return mixed
      */
     public function createMeal($data);
+
+    public function get($vendor_id);
 }

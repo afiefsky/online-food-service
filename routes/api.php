@@ -67,6 +67,12 @@ $api->version('v1', function($api) {
             $api->get('/', 'VendorController@index');
             $api->get('/index', 'VendorController@index');
             $api->post('create', 'VendorController@create');
+            /**
+             * Get all meal based on vendor id
+             * param vendor_id
+            */
+            $api->get('{vendor_id}/meal/', 'MealController@get');
+            $api->get('{vendor_id}/meal/index', 'MealController@get');
         });
 
         // Order With JWT Auth

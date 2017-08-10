@@ -54,4 +54,12 @@ class MealController extends APIController
             return $this->responseJson($e->getMessage(), 400);
         }
     }
+
+    /* Get by vendor_id */
+    public function get($vendor_id)
+    {
+        $meals = $this->meal->get($vendor_id);
+
+        return $this->responseJson($meals, 200);
+    }
 }

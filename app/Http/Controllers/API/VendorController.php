@@ -106,7 +106,7 @@ class VendorController extends APIController
                 return $this->responseJson("Vendor with name " . $request['name'] . " has been created!", 200);
             }
 
-            return $this->responseJson([], 400);
+            return $this->responseJson("Vendor and user with email " . $request['email'] . " already exists!", 400);
         } catch (\Exception $e) {
             return $this->responseJson($e->getMessage(), 400);
         }
