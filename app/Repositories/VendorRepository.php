@@ -24,6 +24,13 @@ class VendorRepository extends AbstractRepository implements IVendorRepository
         return $vendors;
     }
 
+    public function get($vendor_id)
+    {
+        $vendor = $this->where('id', $vendor_id)->all()->toArray();
+
+        return $vendor;
+    }
+
     /**
      * @param $data
      * @param $logo_url

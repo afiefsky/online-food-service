@@ -19,6 +19,8 @@ interface IVendorRepository extends RepositoryInterface
      */
     public function index();
 
+    public function get($vendor_id);
+
     /**
      * @param $data
      * @return mixed

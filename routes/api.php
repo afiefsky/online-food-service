@@ -67,6 +67,9 @@ $api->version('v1', function($api) {
             $api->get('/', 'VendorController@index');
             $api->get('/index', 'VendorController@index');
             $api->post('create', 'VendorController@create');
+            /* Get one vendor */
+            $api->get('{vendor_id}', 'VendorController@get');
+            $api->get('{vendor_id}/index', 'VendorController@get');
             /**
              * Get all meal based on vendor id
              * param vendor_id

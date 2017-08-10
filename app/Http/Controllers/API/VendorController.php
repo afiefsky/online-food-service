@@ -61,6 +61,13 @@ class VendorController extends APIController
         }
     }
 
+    public function get($vendor_id)
+    {
+        $vendor = $this->vendor->get($vendor_id);
+
+        return $this->responseJson($vendor, 200);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

@@ -26,6 +26,13 @@ class VendorService {
         return $vendors;
     }
 
+    public function get($vendor_id)
+    {
+        $vendor = $this->vendor->get($vendor_id);
+
+        return $vendor;
+    }
+
     /**
      * @param $data
      * @return bool
