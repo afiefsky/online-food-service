@@ -63,6 +63,12 @@ abstract class AbstractRepository extends BaseRepository
         return $this;
     }
 
+    public function andWhere($column, $operator = null, $value = null)
+    {
+        $this->model = $this->model->where($column, $operator, $value);
+        return $this;
+    }
+
     /**
      * Add an "or where" clause to the query.
      *

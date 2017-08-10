@@ -10,8 +10,13 @@ class Meal extends Model
 
     protected $fillable = ['name', 'display_name', 'img_url', 'vendor_id', 'meal_type_id', 'is_available'];
 
-    public function price() {
-        $this->hasMany(MealPrice::class);
+    public function price()
+    {
+        return $this->hasMany(MealPrice::class);
     }
 
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
+    }
 }

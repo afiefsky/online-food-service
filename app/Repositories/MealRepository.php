@@ -39,4 +39,11 @@ class MealRepository extends AbstractRepository implements IMealRepository
 
         return $meals;
     }
+
+    public function getOne($vendor_id, $meal_id)
+    {
+        $meal = $this->with('vendor')->where('vendor_id', $vendor_id)->andWhere('id', $meal_id)->all();
+
+        return $meal;
+    }
 }
