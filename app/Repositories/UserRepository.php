@@ -100,7 +100,9 @@ class UserRepository extends AbstractRepository implements IUserRepository
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'phone' => $data['phone'],
-                'avatar_url' => $data['avatar']
+                'avatar_url' => $data['avatar'],
+                'category_id' => $data['category_id'],
+                'category_number' => $data['category_number']
             ]);
 
             return $user->toArray();
