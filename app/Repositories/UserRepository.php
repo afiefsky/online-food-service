@@ -96,6 +96,8 @@ class UserRepository extends AbstractRepository implements IUserRepository
             $user = $this->create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
+                'birthplace' => $data['birthplace'],
+                'birthdate' => $data['birthdate'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'phone' => $data['phone'],

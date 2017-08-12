@@ -12,7 +12,7 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'phone', 'avatar_url', 'category_id', 'category_number'];
+    protected $fillable = ['first_name', 'last_name', 'birthplace', 'birthdate', 'email', 'password', 'phone', 'avatar_url', 'category_id', 'category_number'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
