@@ -12,7 +12,7 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'phone', 'avatar_url'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'phone', 'avatar_url', 'category_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -40,5 +40,13 @@ class User extends Authenticatable
      */
     public function courier() {
         return $this->hasOne(UserCourier::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(UserCategory::class);
     }
 }
