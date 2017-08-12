@@ -19,6 +19,8 @@ class CreateVendorsTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->text('logo_url')->nullable();
+            $table->decimal('latitude', 18, 15);
+            $table->decimal('longitude', 18, 15);
             $table->timestamps();
         });
     }
