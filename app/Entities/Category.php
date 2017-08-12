@@ -4,17 +4,17 @@ namespace OFS\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserCategory extends Model
+class Category extends Model
 {
     /**
      * @var string
      */
-    protected $table = 'users_categories';
+    protected $table = 'categories';
 
     /**
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['id', 'name'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

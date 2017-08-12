@@ -17,7 +17,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
      */
     public function userIndex()
     {
-        $users = $this->all()->toArray();
+        $users = $this->with('category')->all()->toArray();
         return $users;
     }
 
@@ -48,7 +48,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
      */
     public function userIndexByVendorId($id)
     {
-        $users = $this->with('vendor')->whereHas('vendor', function($q) use ($id)
+        $users = $this->with('vendor')->with('category')->whereHas('vendor', function($q) use ($id)
         {
             $q->where('vendors.id', $id);
         })->all()->toArray();

@@ -22,6 +22,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('nothing'),
             'phone' => '',
             'avatar_url' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+            'category_id' => 1, // Super Admin,
+            'category_number' => 0000
         ]);
 
         for ($i=1; $i<=2; $i++) {
@@ -32,6 +34,8 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('nothing'),
                 'phone' => '+62' . '-' . '8' .$faker->numberBetween($min = 00, $max = 99) . '-' . $faker->numberBetween($min = 000, $max = 999) . '-' . $faker->numberBetween($min = 000, $max = 999),
                 'avatar_url' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+                'category_id' => 3, // Dosen
+                'category_number' => 4004001 . $i
             ]);
         }
 
@@ -43,6 +47,8 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('nothing'),
                 'phone' => '+62' . '-' . '8' .$faker->numberBetween($min = 00, $max = 99) . '-' . $faker->numberBetween($min = 000, $max = 999) . '-' . $faker->numberBetween($min = 000, $max = 999),
                 'avatar_url' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+                'category_id' => 2, // Mahasiswa
+                'category_number' => 114301 . $i
             ]);
         }
 
@@ -54,6 +60,8 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('nothing'),
                 'phone' => '+62' . '-' . '8' .$faker->numberBetween($min = 00, $max = 99) . '-' . $faker->numberBetween($min = 000, $max = 999) . '-' . $faker->numberBetween($min = 000, $max = 999),
                 'avatar_url' => $faker->imageUrl($width = 640, $height = 480, 'people'),
+                'category_id' => 3, // Pegawai
+                'category_number' => 5005001 . $i
             ]);
         }
     }

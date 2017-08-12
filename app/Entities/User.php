@@ -12,7 +12,7 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'phone', 'avatar_url', 'category_id'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'phone', 'avatar_url', 'category_id', 'category_number'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -47,6 +47,6 @@ class User extends Authenticatable
      */
     public function category()
     {
-        return $this->belongsTo(UserCategory::class);
+        return $this->belongsTo(Category::class);
     }
 }

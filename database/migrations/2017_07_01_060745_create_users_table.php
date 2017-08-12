@@ -22,6 +22,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->text('avatar_url')->nullable();
+
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->bigInteger('category_number')->nullable();
+
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
         });
