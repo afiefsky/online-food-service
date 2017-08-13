@@ -33,4 +33,14 @@ class CourierRepository extends AbstractRepository implements ICourierRepository
 
         return $courier;
     }
+
+    /* Should be documented */
+    public function get($id)
+    {
+        $courier = $this->with(['user' => function ($q) use($id) {
+            $q->with('category');
+        }])->where('id', $id)->first();
+
+        return $courier->toArray();
+    }
 }

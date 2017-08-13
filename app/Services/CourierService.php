@@ -18,4 +18,11 @@ class CourierService {
 
         return $courier;
     }
+
+    public function get($id)
+    {
+        $courier = $this->courier->get($id);
+
+        return $courier;
+    }
 }

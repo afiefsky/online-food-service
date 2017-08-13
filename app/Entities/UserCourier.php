@@ -11,7 +11,13 @@ class UserCourier extends Model
     protected $fillable = ['user_id', 'is_active'];
 
     // Relationship to Order Entity = One to Many; 'One' customer has/can do 'Many' orders
-    public function order() {
+    public function order()
+    {
         return $this->hasMany(Order::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

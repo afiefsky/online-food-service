@@ -15,4 +15,6 @@ interface ICourierRepository extends RepositoryInterface
     function __construct(Container $app, UserCourier $model);
 
     public function createCourier($id);
+
+    public function get($id);
 }

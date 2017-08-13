@@ -201,4 +201,20 @@ class UserController extends APIController
             return $this->responseJson([], 400);
         }
     }
+
+    public function getCourier($courier_id)
+    {
+        try {
+            $courier = $this->courier->get($courier_id);
+
+            if ($courier) {
+                return $this->responseJson($courier, 200);
+            }
+
+            return $this->responseJson([], 400);
+        } catch (\Exception $e) {
+            return $this->responseJson([], 400);
+        }
+
+    }
 }
