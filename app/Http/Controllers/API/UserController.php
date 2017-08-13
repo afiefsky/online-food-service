@@ -204,17 +204,17 @@ class UserController extends APIController
 
     public function getCourier($courier_id)
     {
-//        try {
+        try {
             $courier = $this->courier->get($courier_id);
 
             if ($courier) {
                 return $this->responseJson($courier, 200);
             }
 
-//            return $this->responseJson([], 400);
-//        } catch (\Exception $e) {
-//            return $this->responseJson([], 400);
-//        }
+            return $this->responseJson([], 400);
+        } catch (\Exception $e) {
+            return $this->responseJson([], 400);
+        }
     }
 
     public function updateCustomer(Request $request, $id)

@@ -21,8 +21,16 @@ class CourierService {
 
     public function get($id)
     {
-        $courier = $this->courier->get($id);
+        try {
+            $courier = $this->courier->get($id);
 
-        return $courier;
+            if ($courier) {
+                return $courier;
+            }
+
+            return false;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }
