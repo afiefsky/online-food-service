@@ -53,4 +53,6 @@ interface IUserRepository extends RepositoryInterface
      * @return mixed
      */
     public function createUser($data, $avatar_url);
+
+    public function updateUser($data, $id);
 }

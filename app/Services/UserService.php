@@ -88,4 +88,11 @@ class UserService {
 
         return $user;
     }
+
+    public function update($data, $id)
+    {
+        $user = $this->user->updateUser($data, $id);
+
+        return $user;
+    }
 }

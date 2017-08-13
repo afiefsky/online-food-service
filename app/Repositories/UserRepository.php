@@ -62,7 +62,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
      */
     public function findCustomerById($id)
     {
-        $customer = $this->whereHas('customer', function($q) use ($id) {
+        $customer = $this->with('category')->whereHas('customer', function($q) use ($id) {
             $q->where('users_customers.id', $id);
         })->first();
 
@@ -110,5 +110,39 @@ class UserRepository extends AbstractRepository implements IUserRepository
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    public function updateUser($data, $id)
+    {
+        $user = $this->with('category')->where('id', '=', $id)->first()->toArray();
+
+        if ($data['avatar'] == null) {
+            $data['avatar_url'] = $user['avatar_url'];
+        } else {
+
+        }
+
+        if ($data['password'] == null) {
+            $data['password'] = $user['password'];
+        } else {
+
+        }
+
+        $source = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'phone' => $data['phone'],
+            'avatar_url' => $data['avatar_url'],
+            'category_id' => $data['category_id'],
+            'category_number' => $data['category_number'],
+            'birthplace' => $data['birthplace'],
+            'birthdate' => $data['birthdate']
+        ];
+
+        $result = $this->update($source, $id);
+
+        return 1;
     }
 }

@@ -215,6 +215,30 @@ class UserController extends APIController
         } catch (\Exception $e) {
             return $this->responseJson([], 400);
         }
+    }
 
+    public function updateCustomer(Request $request, $id)
+    {
+        /* Fillable */
+        $data = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar', 'category_id', 'category_number', 'birthplace', 'birthdate']);
+
+        if ($request->hasFile('avatar')) {
+            $filename = sprintf('%s.%s', md5($request->email), $request->avatar->extension());
+            $path = sprintf(storage_path('app/avatar/' . $filename));
+            $data['avatar_url'] = "avatar\\" . $filename;
+            Image::make($request->avatar->getRealPath())
+                ->fit(220, 220)
+                ->save($path)
+                ->destroy();
+        } else {
+            $data['avatar_url'] = '';
+        }
+
+        $user = $this->user->update($data, $id);
+
+        if ($user) {
+            return $this->responseJson("Data has been updated!!", 200);
+        }
+        return $this->responseJson([], 400);
     }
 }
