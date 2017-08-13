@@ -114,7 +114,9 @@ class UserRepository extends AbstractRepository implements IUserRepository
 
     public function updateUser($data, $id)
     {
-        $user = $this->with('category')->where('id', '=', $id)->first()->toArray();
+        $user = $this->with(['category', 'customer'])->whereHas('customer', function($q) use ($id) {
+            $q->where('users_customers.id', $id);
+        })->first()->toArray();
 
         if ($data['avatar'] == null) {
             $data['avatar_url'] = $user['avatar_url'];
@@ -141,7 +143,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
             'birthdate' => $data['birthdate']
         ];
 
-        $result = $this->update($source, $id);
+        $result = $this->update($source, $user['id']);
 
         return 1;
     }
