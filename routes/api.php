@@ -55,6 +55,7 @@ $api->version('v1', function($api) {
         // User Without JWT Auth
         $api->group(['prefix' => 'user'], function() use ($api) {
             $api->post('customer/create', 'UserController@createCustomer');
+            $api->post('courier/create', 'UserController@createCourier');
         });
 
         // Meal With JWT Auth
