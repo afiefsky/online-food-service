@@ -20,4 +20,9 @@ class UserCourier extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function location()
+    {
+        return $this->hasMany(CourierLocation::class, 'courier_id');
+    }
 }

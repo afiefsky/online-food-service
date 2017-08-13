@@ -37,7 +37,9 @@ class UserRepository extends AbstractRepository implements IUserRepository
     public function courierIndex()
     {
         $i = 1;
-        $couriers = $this->with('courier')->with('category')->whereHas('courier', function($q) use ($i) {/** Empty */})->all()->toArray();
+        $couriers = $this->with('courier')->with('category')->whereHas('courier', function($q) use ($i) {
+            /* Empty */
+        })->all()->toArray();
 
         return $couriers;
     }

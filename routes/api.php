@@ -49,17 +49,17 @@ $api->version('v1', function($api) {
             $api->post('customer/update/{customer_id}', 'UserController@updateCustomer');
 
             $api->post('customer/search', 'UserController@findCustomerByKeyword');
-
-            // Courier
-            $api->get('courier/', 'UserController@courierIndex');
-            $api->get('courier/index', 'UserController@courierIndex');
-            $api->get('courier/{courier_id}', 'UserController@getCourier');
         });
 
         // User Without JWT Auth
         $api->group(['prefix' => 'user'], function() use ($api) {
             $api->post('customer/create', 'UserController@createCustomer');
             $api->post('courier/create', 'UserController@createCourier');
+
+            // Courier
+            $api->get('courier/', 'UserController@courierIndex');
+            $api->get('courier/index', 'UserController@courierIndex');
+            $api->get('courier/{courier_id}', 'UserController@getCourier');
         });
 
         // Meal With JWT Auth
