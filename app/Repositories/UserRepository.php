@@ -185,4 +185,11 @@ class UserRepository extends AbstractRepository implements IUserRepository
 
         return 1;
     }
+
+    public function getByEmail($email)
+    {
+        $user = $this->with('customer')->with('courier')->where('email', $email)->first()->toArray();
+
+        return $user;
+    }
 }

@@ -102,4 +102,11 @@ class UserService {
 
         return $user;
     }
+
+    public function getByEmail($email)
+    {
+        $user = $this->user->getByEmail($email);
+
+        return $user;
+    }
 }

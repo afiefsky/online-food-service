@@ -57,4 +57,6 @@ interface IUserRepository extends RepositoryInterface
     public function updateUser($data, $id);
 
     public function updateCourier($data, $id);
+
+    public function getByEmail($email);
 }

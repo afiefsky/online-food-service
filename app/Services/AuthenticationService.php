@@ -9,6 +9,6 @@ class AuthenticationService
 {
     public function authenticate($credentials)
     {
-
+        return JWTAuth::attempt($credentials);
     }
 }
