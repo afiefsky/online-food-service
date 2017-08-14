@@ -136,7 +136,43 @@ class UserRepository extends AbstractRepository implements IUserRepository
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
-            'password' => $data['password'],
+            'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
+            'avatar_url' => $data['avatar_url'],
+            'category_id' => $data['category_id'],
+            'category_number' => $data['category_number'],
+            'birthplace' => $data['birthplace'],
+            'birthdate' => $data['birthdate']
+        ];
+
+        $result = $this->update($source, $user['id']);
+
+        return 1;
+    }
+
+    public function updateCourier($data, $id)
+    {
+        $user = $this->with(['category', 'courier'])->whereHas('courier', function($q) use ($id) {
+            $q->where('users_couriers.id', $id);
+        })->first()->toArray();
+
+        if ($data['avatar'] == null) {
+            $data['avatar_url'] = $user['avatar_url'];
+        } else {
+
+        }
+
+        if ($data['password'] == null) {
+            $data['password'] = $user['password'];
+        } else {
+
+        }
+
+        $source = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
             'phone' => $data['phone'],
             'avatar_url' => $data['avatar_url'],
             'category_id' => $data['category_id'],

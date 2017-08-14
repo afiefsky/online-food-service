@@ -60,6 +60,8 @@ $api->version('v1', function($api) {
             $api->get('courier/', 'UserController@courierIndex');
             $api->get('courier/index', 'UserController@courierIndex');
             $api->get('courier/{courier_id}', 'UserController@getCourier');
+            /* Update Courier */
+            $api->post('courier/update/{courier_id}', 'UserController@updateCourier');
         });
 
         // Meal With JWT Auth

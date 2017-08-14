@@ -202,6 +202,10 @@ class UserController extends APIController
         }
     }
 
+    /**
+     * @param $courier_id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getCourier($courier_id)
     {
         try {
@@ -217,6 +221,11 @@ class UserController extends APIController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateCustomer(Request $request, $id)
     {
         /* Fillable */
@@ -235,6 +244,30 @@ class UserController extends APIController
         }
 
         $user = $this->user->update($data, $id);
+
+        if ($user) {
+            return $this->responseJson("Data has been updated!!", 200);
+        }
+        return $this->responseJson([], 400);
+    }
+
+    public function updateCourier(Request $request, $id)
+    {
+        $data = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar', 'birthplace', 'birthdate', 'category_id', 'category_number']);
+
+        if ($request->hasFile('avatar')) {
+            $filename = sprintf('%s.%s', md5($request->email), $request->avatar->extension());
+            $path = sprintf(storage_path('app/avatar/' . $filename));
+            $data['avatar_url'] = "avatar\\" . $filename;
+            Image::make($request->avatar->getRealPath())
+                ->fit(220, 220)
+                ->save($path)
+                ->destroy();
+        } else {
+            $data['avatar_url'] = '';
+        }
+
+        $user = $this->user->updateCourier($data, $id);
 
         if ($user) {
             return $this->responseJson("Data has been updated!!", 200);

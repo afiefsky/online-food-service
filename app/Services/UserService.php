@@ -95,4 +95,11 @@ class UserService {
 
         return $user;
     }
+
+    public function updateCourier($data, $id)
+    {
+        $user = $this->user->updateCourier($data, $id);
+
+        return $user;
+    }
 }
