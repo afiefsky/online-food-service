@@ -45,13 +45,13 @@ class AuthenticationController extends APIController
             }
 
             $user = $this->user->getByEmail($request['email']);
-
+            $user['token'] = $token;
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
             return $this->responseJson(['error' => 'could_not_create_token'], 500);
         }
 
         // all good so return the token
-        return $this->responseJson(compact('token', 'user'));
+        return $this->responseJson($user);
     }
 }
