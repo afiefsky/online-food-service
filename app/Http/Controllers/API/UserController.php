@@ -114,6 +114,13 @@ class UserController extends APIController
         }
     }
 
+    public function getUserById($id)
+    {
+        $user = $this->user->getUserById($id);
+
+        return $this->responseJson($user, 200);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|mixed

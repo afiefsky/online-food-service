@@ -103,6 +103,13 @@ class UserService {
         return $user;
     }
 
+    public function getUserById($id)
+    {
+        $user = $this->user->getUserById($id);
+
+        return $user;
+    }
+
     public function getByEmail($email)
     {
         $user = $this->user->getByEmail($email);

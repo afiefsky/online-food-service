@@ -58,6 +58,13 @@ class UserRepository extends AbstractRepository implements IUserRepository
         return $users;
     }
 
+    public function getUserById($id)
+    {
+        $user = $this->with('vendor')->with('category')->with('customer')->with('courier')->where('id', $id)->first()->toArray();
+
+        return $user;
+    }
+
     /**
      * @param $id
      * @return string

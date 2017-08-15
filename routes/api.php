@@ -40,6 +40,8 @@ $api->version('v1', function($api) {
             $api->get('vendor/{vendor_id}', 'UserController@userIndexByVendorId');
             $api->get('vendor/{vendor_id}/index', 'UserController@userIndexByVendorId');
 
+            $api->get('{user_id}', 'UserController@getUserById');
+
             // Customer
             $api->get('customer/', 'UserController@customerIndex');
             $api->get('customer/index', 'UserController@customerIndex');
