@@ -19,4 +19,9 @@ class Meal extends Model
     {
         return $this->belongsTo(Vendor::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(MealType::class);
+    }
 }

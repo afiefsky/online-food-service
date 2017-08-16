@@ -53,7 +53,7 @@ class VendorController extends APIController
             $vendors = $this->vendor->index();
 
             if ($vendors) {
-                return $vendors;
+                return $this->responseJson($vendors, 200);
             }
             return $this->responseJson([], 400);
         } catch (\Exception $e) {
