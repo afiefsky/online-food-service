@@ -12,7 +12,7 @@ class Meal extends Model
 
     public function price()
     {
-        return $this->hasMany(MealPrice::class);
+        return $this->hasOne(MealPrice::class);
     }
 
     public function vendor()
