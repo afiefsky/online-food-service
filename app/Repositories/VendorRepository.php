@@ -33,8 +33,7 @@ class VendorRepository extends AbstractRepository implements IVendorRepository
 
     /**
      * @param $data
-     * @param $logo_url
-     * @return mixed
+     * @return bool
      */
     public function createVendor($data)
     {

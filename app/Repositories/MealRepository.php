@@ -35,14 +35,9 @@ class MealRepository extends AbstractRepository implements IMealRepository
 
     public function get($vendor_id)
     {
-        $i = 0;
-        $meals = $this->with(['type', 'vendor'])->with(['price' => function ($q) use($i) {
+        $meals = $this->with(['type', 'vendor', 'price'])->where('vendor_id', $vendor_id)->all();
 
-        }])->where('vendor_id', $vendor_id)->all();
-
-        $price = $this->with('price')->first();
-
-        return $price;
+        return $meals;
     }
 
     public function getOne($vendor_id, $meal_id)
