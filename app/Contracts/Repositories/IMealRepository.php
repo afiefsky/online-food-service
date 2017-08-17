@@ -22,5 +22,5 @@ interface IMealRepository extends RepositoryInterface
 
     public function get($vendor_id);
 
-    public function getOne($vendor_id, $meal_id);
+    public function getOne($meal_id);
 }

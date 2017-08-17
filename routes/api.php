@@ -38,7 +38,7 @@ $api->version('v1', function($api) {
             $api->get('/', 'UserController@userIndex');
             $api->get('index', 'UserController@userIndex');
             $api->get('vendor/{vendor_id}', 'UserController@userIndexByVendorId');
-            $api->get('vendor/{vendor_id}/index', 'UserController@userIndexByVendorId');
+//            $api->get('vendor/{vendor_id}/index', 'UserController@userIndexByVendorId');
 
             $api->get('{user_id}', 'UserController@getUserById');
 
@@ -71,6 +71,12 @@ $api->version('v1', function($api) {
             $api->post('create', 'MealController@create');
         });
 
+        $api->group(['prefix' => 'meal'], function() use ($api) {
+            $api->post('create', 'MealController@create');
+            $api->get('{meal_id}', 'MealController@getOne');
+            $api->get('vendor/{vendor_id}', 'MealController@get');
+        });
+
         // Vendor Without JWT Auth
         $api->group(['prefix' => 'vendor'], function() use ($api) {
             $api->get('/', 'VendorController@index');
@@ -78,14 +84,14 @@ $api->version('v1', function($api) {
             $api->post('create', 'VendorController@create');
             /* Get one vendor */
             $api->get('{vendor_id}', 'VendorController@get');
-            $api->get('{vendor_id}/index', 'VendorController@get');
+//            $api->get('{vendor_id}/index', 'VendorController@get');
             /**
              * Get all meal based on vendor id
              * param vendor_id
             */
-            $api->get('{vendor_id}/meal/', 'MealController@get');
-            $api->get('{vendor_id}/meal/index', 'MealController@get');
-            $api->get('{vendor_id}/meal/{meal_id}', 'MealController@getOne');
+
+//            $api->get('{vendor_id}/meal/index', 'MealController@get');
+
         });
 
         // Order With JWT Auth

@@ -63,9 +63,9 @@ class MealController extends APIController
         return $this->responseJson($meals, 200);
     }
 
-    public function getOne($vendor_id, $meal_id)
+    public function getOne($meal_id)
     {
-        $meal = $this->meal->getOne($vendor_id, $meal_id);
+        $meal = $this->meal->getOne($meal_id);
 
         return $this->responseJson($meal, 200);
     }

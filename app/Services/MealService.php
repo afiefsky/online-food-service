@@ -35,9 +35,9 @@ class MealService {
         return $meals;
     }
 
-    public function getOne($vendor_id, $meal_id)
+    public function getOne($meal_id)
     {
-        $meal = $this->meal->getOne($vendor_id, $meal_id);
+        $meal = $this->meal->getOne($meal_id);
 
         return $meal;
     }
