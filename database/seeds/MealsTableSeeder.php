@@ -32,6 +32,17 @@ class MealsTableSeeder extends Seeder
         ]);
 
         DB::table('meals')->insert([
+            'name' => 'ayam_balado',
+            'display_name' => 'Ayam Balado',
+            'img_url' => $faker->imageUrl($width = 640, $height = 480, 'food'),
+            'vendor_id' => 1,
+            'meal_type_id' => 1,
+            'is_available' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('meals')->insert([
             'name' => 'avocado_juice',
             'display_name' => 'Avocado Juice',
             'img_url' => $faker->imageUrl($width = 640, $height = 480, 'food'),

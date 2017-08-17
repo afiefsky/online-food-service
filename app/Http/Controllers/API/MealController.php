@@ -56,7 +56,7 @@ class MealController extends APIController
     }
 
     /* Get by vendor_id */
-    public function get(Request $request, $vendor_id)
+    public function get($vendor_id)
     {
         $meals = $this->meal->get($vendor_id);
 
