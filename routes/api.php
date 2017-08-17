@@ -74,7 +74,7 @@ $api->version('v1', function($api) {
         $api->group(['prefix' => 'meal'], function() use ($api) {
             $api->post('create', 'MealController@create');
             $api->get('{meal_id}', 'MealController@getOne');
-            $api->get('vendor/{vendor_id}', 'MealController@get');
+            $api->get('vendor/id={vendor_id}', 'MealController@get');
         });
 
         // Vendor Without JWT Auth
