@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Container\Container as Application;
 use OFS\Contracts\Repositories\IMealRepository;
 use OFS\Entities\Meal;
+use OFS\Entities\MealPrice;
 
 class MealRepository extends AbstractRepository implements IMealRepository
 {
@@ -35,13 +36,11 @@ class MealRepository extends AbstractRepository implements IMealRepository
 
     public function get($vendor_id)
     {
-        $meals = $this->with(['type', 'vendor'])->where('vendor_id', $vendor_id)->first();
+        $meals = $this->with(['type', 'vendor', 'price'])->all();
 
-        $meal = $this->with(['price'])->where('vendor_id', $vendor_id)->first();
+        $price = Meal::with('price')->where('vendor_id', $vendor_id)->get();
 
-        $meals['price'] = $meal['price']['price'];
-
-        return $meals;
+        return $price;
     }
 
     public function getOne($meal_id)
