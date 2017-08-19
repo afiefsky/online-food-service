@@ -47,9 +47,6 @@ $api->version('v1', function($api) {
             $api->get('customer/index', 'UserController@customerIndex');
             $api->get('customer/{customer_id}', 'UserController@findCustomerById');
 
-            /* Edit */
-            $api->post('customer/update/{customer_id}', 'UserController@updateCustomer');
-
             $api->post('customer/search', 'UserController@findCustomerByKeyword');
         });
 
@@ -64,6 +61,9 @@ $api->version('v1', function($api) {
             $api->get('courier/{courier_id}', 'UserController@getCourier');
             /* Update Courier */
             $api->post('courier/update/{courier_id}', 'UserController@updateCourier');
+
+            /* Edit */
+            $api->post('customer/update/{customer_id}', 'UserController@updateCustomer');
         });
 
         // Meal With JWT Auth
