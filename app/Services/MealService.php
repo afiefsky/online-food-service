@@ -41,4 +41,11 @@ class MealService {
 
         return $meal;
     }
+
+    public function getAll()
+    {
+        $meal = $this->meal->getAll();
+
+        return $meal;
+    }
 }

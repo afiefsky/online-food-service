@@ -49,4 +49,11 @@ class MealRepository extends AbstractRepository implements IMealRepository
 
         return $meal;
     }
+
+    public function getAll()
+    {
+        $meal = $this->with('price')->all()->toArray();
+
+        return $meal;
+    }
 }

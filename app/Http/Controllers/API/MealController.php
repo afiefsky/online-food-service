@@ -69,4 +69,11 @@ class MealController extends APIController
 
         return $this->responseJson($meal, 200);
     }
+
+    public function getAll()
+    {
+        $meal = $this->meal->getAll();
+
+        return $this->responseJson($meal, 200);
+    }
 }
