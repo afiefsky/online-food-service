@@ -30,16 +30,12 @@ class OrderService
      */
     public function create($data)
     {
-        try {
-            $order = $this->order->createOrder($data);
+        $order = $this->order->createOrder($data);
 
-            if ($order) {
-                return $order;
-            }
-            return false;
-        } catch (\Exception $e) {
-            return false;
+        if ($order) {
+            return $order;
         }
+        return false;
     }
 
     public function confirm($data)

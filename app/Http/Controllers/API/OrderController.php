@@ -35,19 +35,15 @@ class OrderController extends APIController
      */
     public function create(Request $request)
     {
-        $inputs = $request->only(['customer_id', 'courier_id', 'distance_took', 'tariff_distance_id', 'delivery_status']);
+        $inputs = $request->only(['customer_id', 'courier_id', 'meal_id', 'qty', 'tariff', 'notes', 'delivery_status']);
 
-        try {
-            $order = $this->order->create($inputs);
+        $order = $this->order->create($inputs);
 
-            if ($order) {
-                return $this->responseJson("Order has been submitted", 200);
-            }
-
-            return $this->responseJson([], 400);
-        } catch (\Exception $e) {
-            return $this->responseJson([], 400);
+        if ($order) {
+            return $this->responseJson("Order has been submitted", 200);
         }
+
+        return $this->responseJson([], 400);
     }
 
     public function confirm($order_id, Request $request)

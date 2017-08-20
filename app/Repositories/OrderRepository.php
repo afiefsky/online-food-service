@@ -31,22 +31,20 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
 
     public function createOrder($data)
     {
-        try {
-            $order = $this->create([
-                'customer_id' => $data['customer_id'],
-                'courier_id' => $data['courier_id'],
-                'distance_took' => $data['distance_took'],
-                'tariff_distance_id' => $data['tariff_distance_id'],
-                'delivery_status' => $data['delivery_status']
-            ]);
+        $order = $this->create([
+            'customer_id' => $data['customer_id'],
+            'courier_id' => null,
+            'meal_id' => $data['meal_id'],
+            'qty' => $data['qty'],
+            'tariff' => 2000,
+            'notes' => $data['notes'],
+            'delivery_status' => '2'
+        ]);
 
-            if ($order) {
-                return $order->toArray();
-            }
-            return false;
-        } catch (\Exception $e) {
-            return false;
+        if ($order) {
+            return $order->toArray();
         }
+        return false;
     }
 
     public function confirmOrder($data)

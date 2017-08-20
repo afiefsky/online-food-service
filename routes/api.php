@@ -106,6 +106,7 @@ $api->version('v1', function($api) {
         $api->group(['prefix' => 'order'], function() use ($api) {
             $api->get('/', 'OrderController@index');
             $api->get('/index', 'OrderController@index');
+            $api->post('create', 'OrderController@create');
         });
 
     });
