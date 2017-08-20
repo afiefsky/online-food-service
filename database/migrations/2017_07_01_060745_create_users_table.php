@@ -31,6 +31,8 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->text('avatar_url')->nullable();
 
+            $table->text('address');
+
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
 
