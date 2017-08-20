@@ -16,12 +16,18 @@ class CreateUsersTable extends Migration
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('first_name');
             $table->string('last_name');
+
             $table->string('birthplace');
             $table->date('birthdate');
+
             $table->string('email')->unique();
             $table->string('password');
+
+            $table->enum('gender', ['M', 'F']);
+
             $table->string('phone')->nullable();
             $table->text('avatar_url')->nullable();
 
