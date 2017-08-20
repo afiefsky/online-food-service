@@ -182,7 +182,7 @@ class UserController extends APIController
      */
     public function createCourier(Request $request)
     {
-        try {
+//        try {
             if ($request->hasFile('avatar')) {
                 $filename = sprintf('%s.%s', md5($request->email), $request->avatar_url->extension());
                 $path = sprintf(storage_path('app/avatar/' . $filename));
@@ -204,9 +204,9 @@ class UserController extends APIController
                 return $this->responseJson("User courier with email [" . $request['email'] . "] has been created!!!", 200);
             }
             return $this->responseJson([], 400);
-        } catch (\Exception $e) {
-            return $this->responseJson([], 400);
-        }
+//        } catch (\Exception $e) {
+//            return $this->responseJson([], 400);
+//        }
     }
 
     /**

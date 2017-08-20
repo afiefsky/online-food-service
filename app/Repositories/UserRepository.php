@@ -101,7 +101,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
      */
     public function createUser($data, $avatar_url)
     {
-        try {
+//        try {
             $user = $this->create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
@@ -118,9 +118,9 @@ class UserRepository extends AbstractRepository implements IUserRepository
             ]);
 
             return $user->toArray();
-        } catch (\Exception $e) {
-            return false;
-        }
+//        } catch (\Exception $e) {
+//            return false;
+//        }
     }
 
     public function updateUser($data, $id)
