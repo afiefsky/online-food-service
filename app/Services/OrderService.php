@@ -17,6 +17,13 @@ class OrderService
         $this->order = $order;
     }
 
+    public function index()
+    {
+        $orders = $this->order->index();
+
+        return $orders;
+    }
+
     /**
      * @param $data
      * @return bool

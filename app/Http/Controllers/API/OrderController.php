@@ -22,6 +22,13 @@ class OrderController extends APIController
         $this->order = $order;
     }
 
+    public function index()
+    {
+        $orders = $this->order->index();
+
+        return $this->responseJson($orders, 200);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

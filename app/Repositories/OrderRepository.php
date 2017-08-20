@@ -20,6 +20,15 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
         parent::__construct($app, $model);
     }
 
+    public function index()
+    {
+        $orders = $this->with(['meal' => function ($q) {
+            $q->with('price');
+        }])->all()->toArray();
+
+        return $orders;
+    }
+
     public function createOrder($data)
     {
         try {

@@ -20,12 +20,19 @@ class CreateOrdersTable extends Migration
             $table->foreign('customer_id')->references('id')->on('users_customers');
 
             $table->integer('courier_id')->unsigned();
-            $table->foreign('courier_id')->references('id')->on('users_couriers');
+            $table->foreign('courier_id')->references('id')->on('users_couriers')->nullable();
 
-            $table->bigInteger('distance_took');
+            $table->integer('meal_id')->unsigned();
+            $table->foreign('meal_id')->references('id')->on('meals')->nullable();
 
-            $table->integer('tariff_distance_id')->unsigned();
-            $table->foreign('tariff_distance_id')->references('id')->on('tariff_distance');
+            $table->integer('qty');
+
+            $table->bigInteger('tariff')->nullable();
+
+            $table->text('notes')->nullable();
+
+//            $table->integer('tariff_distance_id')->unsigned();
+//            $table->foreign('tariff_distance_id')->references('id')->on('tariff_distance');
 
             // 0 = is cancelled, 1 = is delivered, 2 = on delivery
             $table->enum('delivery_status', ['0', '1', '2'])->nullable();

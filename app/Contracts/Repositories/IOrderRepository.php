@@ -15,6 +15,8 @@ interface IOrderRepository extends RepositoryInterface
      */
     public function __construct(Container $app, Order $model);
 
+    public function index();
+
     /**
      * @param $data
      * @return mixed

@@ -102,5 +102,11 @@ $api->version('v1', function($api) {
             $api->post('create', 'OrderController@create');
             $api->post('confirm/{order_id}', 'OrderController@confirm');
         });
+
+        $api->group(['prefix' => 'order'], function() use ($api) {
+            $api->get('/', 'OrderController@index');
+            $api->get('/index', 'OrderController@index');
+        });
+
     });
 });
