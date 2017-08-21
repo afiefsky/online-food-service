@@ -77,6 +77,10 @@ $api->version('v1', function($api) {
             $api->get('{meal_id}', 'MealController@getOne');
             $api->get('vendor/id={vendor_id}',
                 'MealController@get');
+
+            $api->get('vendor/{vendor_id}',
+                'MealController@get');
+
             $api->get('/', 'MealController@getAll');
         });
 
