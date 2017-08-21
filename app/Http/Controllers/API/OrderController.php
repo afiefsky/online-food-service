@@ -29,6 +29,13 @@ class OrderController extends APIController
         return $this->responseJson($orders, 200);
     }
 
+    public function get($customer_id)
+    {
+        $orders = $this->order->get($customer_id);
+
+        return $this->responseJson($orders, 200);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

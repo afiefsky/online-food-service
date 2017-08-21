@@ -107,6 +107,7 @@ $api->version('v1', function($api) {
             $api->get('/', 'OrderController@index');
             $api->get('/index', 'OrderController@index');
             $api->post('create', 'OrderController@create');
+            $api->get('customer/{customer_id}', 'OrderController@get');
         });
 
     });
