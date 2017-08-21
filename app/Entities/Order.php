@@ -8,7 +8,7 @@ class Order extends Model
 {
     protected $table = 'orders';
 
-    protected $fillable = ['customer_id', 'courier_id', 'meal_id', 'qty', 'tariff', 'notes', 'delivery_status'];
+    protected $fillable = ['customer_id', 'courier_id', 'meal_id', 'qty', 'tariff', 'notes', 'delivery_status', 'total'];
 
     // Relationship to Customer Entities = Many to One
     public function customer()

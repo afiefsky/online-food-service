@@ -35,7 +35,7 @@ class OrderController extends APIController
      */
     public function create(Request $request)
     {
-        $inputs = $request->only(['customer_id', 'courier_id', 'meal_id', 'qty', 'tariff', 'notes', 'delivery_status']);
+        $inputs = $request->only(['customer_id', 'courier_id', 'meal_id', 'qty', 'tariff', 'notes', 'delivery_status', 'total']);
 
         $order = $this->order->create($inputs);
 
