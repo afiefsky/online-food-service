@@ -37,17 +37,15 @@ class VendorRepository extends AbstractRepository implements IVendorRepository
      */
     public function createVendor($data)
     {
-        try {
-            $vendor = $this->create([
-                'name' => $data['name'],
-                'address' => $data['address'],
-                'phone' => $data['phone'],
-                'logo_url' => $data['logo']
-            ]);
+        $vendor = $this->create([
+            'name' => $data['name'],
+            'address' => $data['address_vendor'],
+            'phone' => $data['phone_vendor'],
+            'logo_url' => $data['logo'],
+            'latitude' => $data['latitude'],
+            'longitude' => $data['longitude']
+        ]);
 
-            return $vendor->toArray();
-        } catch (\Exception $e) {
-            return false;
-        }
+        return $vendor->toArray();
     }
 }

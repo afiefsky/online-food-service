@@ -49,16 +49,12 @@ class VendorController extends APIController
      */
     public function index()
     {
-        try {
-            $vendors = $this->vendor->index();
+        $vendors = $this->vendor->index();
 
-            if ($vendors) {
-                return $this->responseJson($vendors, 200);
-            }
-            return $this->responseJson([], 400);
-        } catch (\Exception $e) {
-            return $this->responseJson($e->getMessage(), 400);
+        if ($vendors) {
+            return $this->responseJson($vendors, 200);
         }
+        return $this->responseJson([], 400);
     }
 
     public function get($vendor_id)
@@ -74,48 +70,56 @@ class VendorController extends APIController
      */
     public function create(Request $request)
     {
-        try {
-            // Image for vendor logo
-            if ($request->hasFile('logo_url')) {
-                $filename = sprintf('%s.%s', md5($request->email), $request->logo_url->extension());
-                $path = sprintf(storage_path('app/vendor/' . $filename));
-                $request['logo'] = "vendor\\" . bcrypt($filename);
-                Image::make($request->logo_url->getRealPath())
-                    ->fit(220, 220)
-                    ->save($path)
-                    ->destroy();
-            } else {
-                $request['logo'] = '';
-            }
-            $inputs['vendor'] = $request->only(['name', 'address', 'phone', 'logo_url', 'logo']);
-
-            // Image for vendor administrator avater
-            if ($request->hasFile('avatar_url')) {
-                $filename = sprintf('%s.%s', md5($request->email), $request->avatar_url->extension());
-                $path = sprintf(storage_path('app\\avatar\\' . $filename));
-                $request['avatar'] = "avatar\\" . $filename;
-                Image::make($request->avatar_url->getRealPath())
-                    ->fit(220, 220)
-                    ->save($path)
-                    ->destroy();
-            } else {
-                $request['avatar'] = '';
-            }
-            $inputs['user'] = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar']);
-
-            $vendor = $this->vendor->create($inputs['vendor']);
-            $user = $this->user->create($inputs['user'], $request['avatar_url']);
-            $adminstrator = $this->administrator->create($user['id']);
-            $userRole = $this->userRole->create($user['id'], 2);
-            $userVendor = $this->userVendor->create($user['id'], $vendor['id']);
-
-            if ($userVendor) {
-                return $this->responseJson("Vendor with name " . $request['name'] . " has been created!", 200);
-            }
-
-            return $this->responseJson("Vendor and user with email " . $request['email'] . " already exists!", 400);
-        } catch (\Exception $e) {
-            return $this->responseJson($e->getMessage(), 400);
+        // Image for vendor logo
+        if ($request->hasFile('logo_url')) {
+            $filename = sprintf('%s.%s', md5($request->email), $request->logo_url->extension());
+            $path = sprintf(storage_path('app/vendor/' . $filename));
+            $request['logo'] = "vendor\\" . bcrypt($filename);
+            Image::make($request->logo_url->getRealPath())
+                ->fit(220, 220)
+                ->save($path)
+                ->destroy();
+        } else {
+            $request['logo'] = '';
         }
+        $inputs['vendor'] = $request->only(['name', 'address_vendor', 'phone_vendor', 'logo_url', 'logo', 'latitude', 'longitude']);
+
+        // Image for vendor administrator avater
+        if ($request->hasFile('avatar_url')) {
+            $filename = sprintf('%s.%s', md5($request->email), $request->avatar_url->extension());
+            $path = sprintf(storage_path('app\\avatar\\' . $filename));
+            $request['avatar'] = "avatar\\" . $filename;
+            Image::make($request->avatar_url->getRealPath())
+                ->fit(220, 220)
+                ->save($path)
+                ->destroy();
+        } else {
+            $request['avatar'] = '';
+        }
+        $inputs['user'] = $request->only([
+            'first_name',
+            'last_name',
+            'birthplace',
+            'birthdate',
+            'email',
+            'password',
+            'gender',
+            'phone',
+            'avatar',
+            'address',
+            'category_id',
+            'category_number']);
+
+        $vendor = $this->vendor->create($inputs['vendor']);
+        $user = $this->user->create($inputs['user'], $request['avatar_url']);
+        $adminstrator = $this->administrator->create($user['id']);
+        $userRole = $this->userRole->create($user['id'], 2);
+        $userVendor = $this->userVendor->create($user['id'], $vendor['id']);
+
+        if ($userVendor) {
+            return $this->responseJson("Vendor with name " . $request['name'] . " has been created!", 200);
+        }
+
+        return $this->responseJson([], 400);
     }
 }

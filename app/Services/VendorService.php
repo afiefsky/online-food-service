@@ -39,12 +39,8 @@ class VendorService {
      */
     public function create($data)
     {
-        try {
-            $vendor = $this->vendor->createVendor($data);
+        $vendor = $this->vendor->createVendor($data);
 
-            return $vendor;
-        } catch (\Exception $e) {
-            return false;
-        }
+        return $vendor;
     }
 }

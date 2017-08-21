@@ -8,7 +8,7 @@ class Vendor extends Model
 {
     protected $table = 'vendors';
 
-    protected $fillable = ['name', 'address', 'phone', 'logo_url'];
+    protected $fillable = ['name', 'address', 'phone', 'logo_url', 'latitude', 'longitude'];
 
     public function user() {
         return $this->belongsToMany(User::class, 'users_vendors', 'vendor_id', 'user_id');
