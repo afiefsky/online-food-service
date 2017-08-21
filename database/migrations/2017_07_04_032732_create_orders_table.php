@@ -36,6 +36,7 @@ class CreateOrdersTable extends Migration
 
             // 0 = is cancelled, 1 = is delivered, 2 = on delivery
             $table->enum('delivery_status', ['0', '1', '2'])->nullable();
+            $table->bigInteger('total')->nullable();
             $table->timestamps();
         });
     }
