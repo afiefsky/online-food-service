@@ -48,7 +48,7 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
             'tariff' => 2000,
             'notes' => $data['notes'],
             'delivery_status' => '2',
-            'total' => $data['total']
+            'total' => $data['total_converted']
         ]);
 
         if ($order) {
