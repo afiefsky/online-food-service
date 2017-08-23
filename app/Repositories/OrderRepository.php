@@ -38,6 +38,10 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
         return $orders;
     }
 
+    /**
+     * @param $data
+     * @return bool
+     */
     public function createOrder($data)
     {
         $order = $this->create([
