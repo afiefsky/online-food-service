@@ -64,6 +64,9 @@ $api->version('v1', function($api) {
 
             /* Edit */
             $api->put('customer/update/{customer_id}', 'UserController@updateCustomer');
+
+            /* Deactivate */
+            $api->put('courier/deactivate/{courier_id}', 'CourierController@deactivate');
         });
 
         // Meal With JWT Auth

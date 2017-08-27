@@ -52,6 +52,12 @@ class CourierRepository extends AbstractRepository implements ICourierRepository
         } catch (\Exception $e) {
             return false;
         }
+    }
 
+    public function deactivate($id)
+    {
+        $courier = $this->update(['is_active' => '0'], $id);
+
+        return $courier;
     }
 }

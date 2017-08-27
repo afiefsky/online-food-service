@@ -17,4 +17,6 @@ interface ICourierRepository extends RepositoryInterface
     public function createCourier($id);
 
     public function get($id);
+
+    public function deactivate($id);
 }

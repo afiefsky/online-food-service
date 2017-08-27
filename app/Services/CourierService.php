@@ -4,7 +4,8 @@ namespace OFS\Services;
 
 use OFS\Contracts\Repositories\ICourierRepository;
 
-class CourierService {
+class CourierService
+{
     private $courier;
 
     function __construct(ICourierRepository $courier)
@@ -32,5 +33,12 @@ class CourierService {
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    public function deactivate($id)
+    {
+        $courier = $this->courier->deactivate($id);
+
+        return $courier;
     }
 }
