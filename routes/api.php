@@ -40,7 +40,7 @@ $api->version('v1', function($api) {
             $api->get('vendor/{vendor_id}', 'UserController@userIndexByVendorId');
 //            $api->get('vendor/{vendor_id}/index', 'UserController@userIndexByVendorId');
 
-            $api->get('{user_id}', 'UserController@getUserById');
+
 
             // Customer
             $api->get('customer/', 'UserController@customerIndex');
@@ -52,6 +52,8 @@ $api->version('v1', function($api) {
 
         // User Without JWT Auth
         $api->group(['prefix' => 'user'], function() use ($api) {
+            $api->get('{user_id}', 'UserController@getUserById');
+
             $api->post('customer/create', 'UserController@createCustomer');
             $api->post('courier/create', 'UserController@createCourier');
 
