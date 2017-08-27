@@ -18,5 +18,15 @@ interface ICourierRepository extends RepositoryInterface
 
     public function get($id);
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function deactivate($id);
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function activate($id);
 }

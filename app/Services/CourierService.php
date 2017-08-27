@@ -41,4 +41,11 @@ class CourierService
 
         return $courier;
     }
+
+    public function activate($id)
+    {
+        $courier = $this->courier->activate($id);
+
+        return $courier;
+    }
 }

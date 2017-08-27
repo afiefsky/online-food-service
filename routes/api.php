@@ -65,7 +65,8 @@ $api->version('v1', function($api) {
             /* Edit */
             $api->put('customer/update/{customer_id}', 'UserController@updateCustomer');
 
-            /* Deactivate */
+            /* Activate & Deactivate Courier */
+            $api->put('courier/activate/{courier_id}', 'CourierController@activate');
             $api->put('courier/deactivate/{courier_id}', 'CourierController@deactivate');
         });
 

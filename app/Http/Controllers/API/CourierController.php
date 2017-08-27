@@ -21,4 +21,10 @@ class CourierController extends APIController
         return $this->responseJson(["Courier with id = '".$courier_id."' has been deactivated"], 200);
     }
 
+    public function activate($courier_id)
+    {
+        $courier = $this->courier->activate($courier_id);
+
+        return $this->responseJson(["Courier with id = '".$courier_id."' has been activated"], 200);
+    }
 }

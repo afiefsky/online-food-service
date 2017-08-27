@@ -54,9 +54,20 @@ class CourierRepository extends AbstractRepository implements ICourierRepository
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function deactivate($id)
     {
         $courier = $this->update(['is_active' => '0'], $id);
+
+        return $courier;
+    }
+
+    public function activate($id)
+    {
+        $courier = $this->update(['is_active' => '1'], $id);
 
         return $courier;
     }
