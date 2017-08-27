@@ -44,7 +44,7 @@ class OrderController extends APIController
     {
         $inputs = $request->only(['customer_id', 'courier_id', 'meal_id', 'qty', 'tariff', 'notes', 'delivery_status', 'total']);
 
-        $inputs['total_converted'] = str_replace(".", "", $inputs['total']);
+        $inputs['total_converted'] = str_replace([".", ","], "", $inputs['total']);
 
         $order = $this->order->create($inputs);
 
