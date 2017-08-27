@@ -35,6 +35,13 @@ class CourierService
         }
     }
 
+    public function getByUserId($user_id)
+    {
+        $courier = $this->courier->getByUserId($user_id);
+
+        return $courier;
+    }
+
     public function deactivate($id)
     {
         $courier = $this->courier->deactivate($id);

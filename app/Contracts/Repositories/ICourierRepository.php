@@ -18,6 +18,8 @@ interface ICourierRepository extends RepositoryInterface
 
     public function get($id);
 
+    public function getByUserId($user_id);
+
     /**
      * @param $id
      * @return mixed

@@ -20,4 +20,6 @@ interface IUserRoleRepository extends RepositoryInterface
      * @return mixed
      */
     public function createUser($user_id, $role_id);
+
+    public function get($user_id);
 }

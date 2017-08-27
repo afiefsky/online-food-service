@@ -27,4 +27,11 @@ class UserRoleService {
 
         return 1;
     }
+
+    public function get($user_id)
+    {
+        $userRole = $this->userRole->get($user_id);
+
+        return $userRole;
+    }
 }

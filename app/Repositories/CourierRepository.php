@@ -54,6 +54,13 @@ class CourierRepository extends AbstractRepository implements ICourierRepository
         }
     }
 
+    public function getByUserId($user_id)
+    {
+        $courier = $this->where('user_id', $user_id)->first()->toArray();
+
+        return $courier;
+    }
+
     /**
      * @param $id
      * @return mixed

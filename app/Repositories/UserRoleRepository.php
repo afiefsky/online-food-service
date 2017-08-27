@@ -26,4 +26,11 @@ class UserRoleRepository extends AbstractRepository implements IUserRoleReposito
 
         return true;
     }
+
+    public function get($user_id)
+    {
+        $userRole = $this->where('user_id', $user_id)->first()->toArray();
+
+        return $userRole;
+    }
 }
