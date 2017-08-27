@@ -63,7 +63,7 @@ $api->version('v1', function($api) {
             $api->post('courier/update/{courier_id}', 'UserController@updateCourier');
 
             /* Edit */
-            $api->post('customer/update/{customer_id}', 'UserController@updateCustomer');
+            $api->put('customer/update/{customer_id}', 'UserController@updateCustomer');
         });
 
         // Meal With JWT Auth
