@@ -38,6 +38,15 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
         return $orders;
     }
 
+    public function getForCourier($courier_id)
+    {
+        $orders = $this->with(['meal' => function ($q) {
+            $q->with('price');
+        }])->where('courier_id', $courier_id)->all()->toArray();
+
+        return $orders;
+    }
+
     /**
      * @param $data
      * @return bool

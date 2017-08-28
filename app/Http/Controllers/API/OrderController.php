@@ -36,6 +36,13 @@ class OrderController extends APIController
         return $this->responseJson($orders, 200);
     }
 
+    public function getForCourier($courier_id)
+    {
+        $orders = $this->order->getForCourier($courier_id);
+
+        return $this->responseJson($orders, 200);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

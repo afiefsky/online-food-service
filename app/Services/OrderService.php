@@ -31,6 +31,13 @@ class OrderService
         return $orders;
     }
 
+    public function getForCourier($courier_id)
+    {
+        $orders = $this->order->getForCourier($courier_id);
+
+        return $orders;
+    }
+
     /**
      * @param $data
      * @return bool
