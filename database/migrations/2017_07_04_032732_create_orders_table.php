@@ -16,7 +16,9 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('customer_id')->unsigned();
+            $table->integer('user_id')->nullable();
+
+            $table->integer('customer_id')->unsigned()->nullable();
             $table->foreign('customer_id')->references('id')->on('users_customers');
 
             $table->integer('courier_id')->unsigned()->nullable();

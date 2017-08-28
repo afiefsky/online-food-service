@@ -67,9 +67,12 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
         }])->where('courier_id', $courier_id)->all()->toArray();
 
         $data = [
-            'Data-0' => $orders[0],
-            'Data-1' => $orders[1]
+            $i => ''
         ];
+
+        for ($i=0; $i < count($orders); $i++) {
+            array_push($data, $orders[$i]);
+        }
 
         return $data;
     }
@@ -81,7 +84,7 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
     public function createOrder($data)
     {
         $order = $this->create([
-            'customer_id' => $data['customer_id'],
+            'user_id' => $data['user_id'],
             'courier_id' => null,
             'meal_id' => $data['meal_id'],
             'qty' => $data['qty'],
