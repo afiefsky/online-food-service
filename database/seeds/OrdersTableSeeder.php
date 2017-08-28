@@ -21,7 +21,7 @@ class OrdersTableSeeder extends Seeder
                 'qty' => 2,
                 'tariff' => 2000,
                 'notes' => 'Notes A',
-                'delivery_status' => '1',
+                'delivery_status' => '3',
                 'total' => 32000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

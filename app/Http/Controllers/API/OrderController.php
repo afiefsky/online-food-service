@@ -33,7 +33,14 @@ class OrderController extends APIController
     {
         $orders = $this->order->getByVendor($vendor_id);
 
-        return $orders;
+        return $this->responseJson($orders, 200);
+    }
+
+    public function newestOrder()
+    {
+        $orders = $this->order->newestOrder();
+        
+        return $this->responseJson($orders, 200);
     }
 
     public function get($user_id)

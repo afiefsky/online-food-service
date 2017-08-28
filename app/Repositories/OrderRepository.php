@@ -33,6 +33,13 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
         return $orders;
     }
 
+    public function newestOrder()
+    {
+        $orders = $this->where('delivery_status', '=', '3')->all()->toArray();
+
+        return $orders;
+    }
+
     public function getByVendor($vendor_id)
     {
         $orders = $this->whereHas('meal', function ($q) use ($vendor_id) {
@@ -59,7 +66,6 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
 
     public function getForCourier($user_id)
     {
-
         $orders = $this->with(['customer' => function ($q) {
             $q->with('user');
         }])->with(['meal' => function ($q) {
@@ -82,7 +88,7 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
             'qty' => $data['qty'],
             'tariff' => 2000,
             'notes' => $data['notes'],
-            'delivery_status' => '0',
+            'delivery_status' => '3', // waiting
             'total' => $data['total_converted']
         ]);
 

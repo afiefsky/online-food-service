@@ -38,6 +38,13 @@ class OrderService
         return $orders;
     }
 
+    public function newestOrder()
+    {
+        $orders = $this->order->newestOrder();
+
+        return $orders;
+    }
+
     public function getForCourier($courier_id)
     {
         $orders = $this->order->getForCourier($courier_id);
