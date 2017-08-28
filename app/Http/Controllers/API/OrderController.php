@@ -36,9 +36,9 @@ class OrderController extends APIController
         return $orders;
     }
 
-    public function get($customer_id)
+    public function get($user_id)
     {
-        $orders = $this->order->get($customer_id);
+        $orders = $this->order->get($user_id);
 
         return $this->responseJson($orders, 200);
     }

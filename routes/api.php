@@ -120,8 +120,8 @@ $api->version('v1', function($api) {
             $api->get('/', 'OrderController@index');
             $api->get('/index', 'OrderController@index');
             $api->post('create', 'OrderController@create');
-            $api->get('customer/{customer_id}', 'OrderController@get');
-            $api->get('courier/{courier_id}', 'OrderController@getForCourier');
+            $api->get('customer/{user_id}', 'OrderController@get');
+            $api->get('courier/{user_id}', 'OrderController@getForCourier');
             $api->get('vendor/{vendor_id}', 'OrderController@getByVendor');
         });
 
