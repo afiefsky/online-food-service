@@ -24,6 +24,13 @@ class OrderService
         return $orders;
     }
 
+    public function getByVendor($vendor_id)
+    {
+        $orders = $this->order->getByVendor($vendor_id);
+
+        return $orders;
+    }
+
     public function get($customer_id)
     {
         $orders = $this->order->get($customer_id);

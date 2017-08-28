@@ -17,6 +17,8 @@ interface IOrderRepository extends RepositoryInterface
 
     public function index();
 
+    public function getByVendor($vendor_id);
+
     public function get($customer_id);
 
     public function getForCourier($courier_id);

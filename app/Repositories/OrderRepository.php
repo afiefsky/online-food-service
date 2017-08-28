@@ -29,6 +29,15 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
         return $orders;
     }
 
+    public function getByVendor($vendor_id)
+    {
+        $orders = $this->whereHas('meal', function ($q) use ($vendor_id) {
+            $q->where('vendor_id', '=', $vendor_id);
+        })->all()->toArray();
+
+        return $orders;
+    }
+
     public function get($customer_id)
     {
         $orders = $this->with(['meal' => function ($q) {
