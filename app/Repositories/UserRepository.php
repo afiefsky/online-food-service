@@ -125,9 +125,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
 
     public function updateUser($data, $id)
     {
-        $user = $this->with(['category', 'customer'])->whereHas('customer', function($q) use ($id) {
-            $q->where('users_customers.id', $id);
-        })->first()->toArray();
+        $user = $this->where('id', $id)->first()->toArray();
 
         // first_name
         if ($data['first_name'] == null) {
@@ -159,6 +157,11 @@ class UserRepository extends AbstractRepository implements IUserRepository
             $data['password'] = $user['password'];
         } else {
             $data['password'] = bcrypt($data['password']);
+        }
+
+        // gender
+        if ($data['gender'] == null) {
+            $data['gender'] = $user['gender'];
         }
 
         // phone
@@ -193,6 +196,7 @@ class UserRepository extends AbstractRepository implements IUserRepository
             'birthdate'         => $data['birthdate'],
             'email'             => $data['email'],
             'password'          => $data['password'],
+            'gender'            => $data['gender'],
             'phone'             => $data['phone'],
             'avatar_url'        => $data['avatar_url'],
             'address'           => $data['address'],

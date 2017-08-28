@@ -54,6 +54,8 @@ $api->version('v1', function($api) {
         $api->group(['prefix' => 'user'], function() use ($api) {
             $api->get('{user_id}', 'UserController@getUserById');
 
+            $api->put('update/{user_id}', 'UserController@updateUser');
+
             $api->post('customer/create', 'UserController@createCustomer');
             $api->post('courier/create', 'UserController@createCourier');
 
