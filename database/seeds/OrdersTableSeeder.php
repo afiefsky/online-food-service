@@ -22,6 +22,7 @@ class OrdersTableSeeder extends Seeder
                 'tariff' => 2000,
                 'notes' => 'Notes A',
                 'delivery_status' => '1',
+                'total' => 32000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -36,6 +37,7 @@ class OrdersTableSeeder extends Seeder
             'tariff' => 2000,
             'notes' => 'Notes B',
             'delivery_status' => '0',
+            'total' => 11000,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
