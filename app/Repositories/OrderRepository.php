@@ -59,7 +59,7 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
     {
         $orders = $this->with(['meal' => function ($q) {
             $q->with('price');
-        }])->where('user_id', $user_id)->where('delivery_status', '=', '0')->all()->toArray();
+        }])->where('user_id', $user_id)->where('delivery_status', '=', '3')->all()->toArray();
 
         return $orders;
     }
