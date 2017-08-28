@@ -139,6 +139,16 @@ class UserRepository extends AbstractRepository implements IUserRepository
             $data['last_name'] = $user['last_name'];
         }
 
+        // birthplace
+        if ($data['birthplace'] == null) {
+            $data['birthplace'] = $user['birthplace'];
+        }
+
+        // birthdate
+        if ($data['birthdate'] == null) {
+            $data['birthdate'] = $user['birthdate'];
+        }
+
         // email
         if ($data['email'] == null) {
             $data['email'] = $user['email'];
@@ -161,6 +171,11 @@ class UserRepository extends AbstractRepository implements IUserRepository
             $data['avatar_url'] = $user['avatar_url'];
         }
 
+        // address
+        if ($data['address'] == null) {
+            $data['address'] = $user['address'];
+        }
+
         // category_id
         if ($data['category_id'] == null) {
             $data['category_id'] = $user['category_id'];
@@ -171,27 +186,18 @@ class UserRepository extends AbstractRepository implements IUserRepository
             $data['category_number'] = $user['category_number'];
         }
 
-        // birthplace
-        if ($data['birthplace'] == null) {
-            $data['birthplace'] = $user['birthplace'];
-        }
-
-        // birthdate
-        if ($data['birthdate'] == null) {
-            $data['birthdate'] = $user['birthdate'];
-        }
-
         $source = [
             'first_name'        => $data['first_name'],
             'last_name'         => $data['last_name'],
+            'birthplace'        => $data['birthplace'],
+            'birthdate'         => $data['birthdate'],
             'email'             => $data['email'],
             'password'          => $data['password'],
             'phone'             => $data['phone'],
             'avatar_url'        => $data['avatar_url'],
+            'address'           => $data['address'],
             'category_id'       => $data['category_id'],
-            'category_number'   => $data['category_number'],
-            'birthplace'        => $data['birthplace'],
-            'birthdate'         => $data['birthdate']
+            'category_number'   => $data['category_number']
         ];
 
         $result = $this->update($source, $user['id']);
@@ -205,29 +211,75 @@ class UserRepository extends AbstractRepository implements IUserRepository
             $q->where('users_couriers.id', $id);
         })->first()->toArray();
 
-        if ($data['avatar'] == null) {
-            $data['avatar_url'] = $user['avatar_url'];
-        } else {
-
+        // first_name
+        if ($data['first_name'] == null) {
+            $data['first_name'] = $user['first_name'];
         }
 
+        // last_name
+        if ($data['last_name'] == null) {
+            $data['last_name'] = $user['last_name'];
+        }
+
+        // birthplace
+        if ($data['birthplace'] == null) {
+            $data['birthplace'] = $user['birthplace'];
+        }
+
+        // birthdate
+        if ($data['birthdate'] == null) {
+            $data['birthdate'] = $user['birthdate'];
+        }
+
+        // email
+        if ($data['email'] == null) {
+            $data['email'] = $user['email'];
+        }
+
+        // password
         if ($data['password'] == null) {
             $data['password'] = $user['password'];
         } else {
+            $data['password'] = bcrypt($data['password']);
+        }
 
+        // phone
+        if ($data['phone'] == null) {
+            $data['phone'] = $user['phone'];
+        }
+
+        // avatar
+        if ($data['avatar'] == null) {
+            $data['avatar_url'] = $user['avatar_url'];
+        }
+
+        // address
+        if ($data['address'] == null) {
+            $data['address'] = $user['address'];
+        }
+
+        // category_id
+        if ($data['category_id'] == null) {
+            $data['category_id'] = $user['category_id'];
+        }
+
+        // category_number
+        if ($data['category_number'] == null) {
+            $data['category_number'] = $user['category_number'];
         }
 
         $source = [
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'phone' => $data['phone'],
-            'avatar_url' => $data['avatar_url'],
-            'category_id' => $data['category_id'],
-            'category_number' => $data['category_number'],
-            'birthplace' => $data['birthplace'],
-            'birthdate' => $data['birthdate']
+            'first_name'        => $data['first_name'],
+            'last_name'         => $data['last_name'],
+            'birthplace'        => $data['birthplace'],
+            'birthdate'         => $data['birthdate'],
+            'email'             => $data['email'],
+            'password'          => $data['password'],
+            'phone'             => $data['phone'],
+            'avatar_url'        => $data['avatar_url'],
+            'address'           => $data['address'],
+            'category_id'       => $data['category_id'],
+            'category_number'   => $data['category_number']
         ];
 
         $result = $this->update($source, $user['id']);

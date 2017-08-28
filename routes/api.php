@@ -61,8 +61,9 @@ $api->version('v1', function($api) {
             $api->get('courier/', 'UserController@courierIndex');
             $api->get('courier/index', 'UserController@courierIndex');
             $api->get('courier/{courier_id}', 'UserController@getCourier');
+
             /* Update Courier */
-            $api->post('courier/update/{courier_id}', 'UserController@updateCourier');
+            $api->put('courier/update/{courier_id}', 'UserController@updateCourier');
 
             /* Edit */
             $api->put('customer/update/{customer_id}', 'UserController@updateCustomer');

@@ -236,7 +236,7 @@ class UserController extends APIController
     public function updateCustomer(Request $request, $id)
     {
         /* Fillable */
-        $data = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar', 'category_id', 'category_number', 'birthplace', 'birthdate']);
+        $data = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar', 'address', 'category_id', 'category_number', 'birthplace', 'birthdate']);
 
         if ($request->hasFile('avatar')) {
             $filename = sprintf('%s.%s', md5($request->email), $request->avatar->extension());
@@ -260,7 +260,7 @@ class UserController extends APIController
 
     public function updateCourier(Request $request, $id)
     {
-        $data = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar', 'birthplace', 'birthdate', 'category_id', 'category_number']);
+        $data = $request->only(['first_name', 'last_name', 'email', 'password', 'phone', 'avatar', 'birthplace', 'birthdate', 'address', 'category_id', 'category_number']);
 
         if ($request->hasFile('avatar')) {
             $filename = sprintf('%s.%s', md5($request->email), $request->avatar->extension());
