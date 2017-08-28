@@ -111,9 +111,9 @@ $api->version('v1', function($api) {
         });
 
         // Order With JWT Auth
-        $api->group(['prefix' => 'order', 'middleware' => 'jwt.auth'], function() use ($api) {
+        $api->group(['prefix' => 'order'], function() use ($api) {
             $api->post('create', 'OrderController@create');
-            $api->post('confirm/{order_id}', 'OrderController@confirm');
+            $api->put('confirm/{order_id}', 'OrderController@confirm');
         });
 
         $api->group(['prefix' => 'order'], function() use ($api) {

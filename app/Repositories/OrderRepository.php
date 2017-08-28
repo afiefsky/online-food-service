@@ -100,7 +100,6 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
 
     public function confirmOrder($data)
     {
-        try {
             $order = $this->update([
                 'delivery_status' => $data['delivery_status']
             ], $data['id']);
@@ -109,8 +108,5 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
                 return true;
             }
             return false;
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
     }
 }
