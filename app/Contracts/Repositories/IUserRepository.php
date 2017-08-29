@@ -54,6 +54,8 @@ interface IUserRepository extends RepositoryInterface
      */
     public function createUser($data, $avatar_url);
 
+    public function userNewOrder();
+
     public function updateUser($data, $id);
 
     public function updateCourier($data, $id);

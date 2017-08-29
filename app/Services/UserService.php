@@ -89,6 +89,13 @@ class UserService {
         return $user;
     }
 
+    public function userNewOrder()
+    {
+        $orders = $this->user->userNewOrder();
+
+        return $orders;
+    }
+
     public function update($data, $id)
     {
         $user = $this->user->updateUser($data, $id);

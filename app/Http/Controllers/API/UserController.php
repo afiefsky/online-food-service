@@ -51,6 +51,13 @@ class UserController extends APIController
         $this->userVendor = $userVendor;
     }
 
+    public function userNewOrder()
+    {
+        $orders = $this->user->userNewOrder();
+
+        return $this->responseJson($orders, 200);
+    }
+
     /**
      * Index of Users
      * @return \Illuminate\Http\JsonResponse

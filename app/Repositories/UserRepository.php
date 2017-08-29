@@ -123,6 +123,15 @@ class UserRepository extends AbstractRepository implements IUserRepository
 //        }
     }
 
+    public function userNewOrder()
+    {
+        $orders = $this->whereHas('order', function($q) {
+
+        })->with('order')->all()->toArray();
+
+        return $orders;
+    }
+
     public function updateUser($data, $id)
     {
         $user = $this->where('id', $id)->first()->toArray();

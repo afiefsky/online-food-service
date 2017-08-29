@@ -50,7 +50,7 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
             $q->with('user');
         }])->with(['customer' => function ($q) {
             $q->with('user');
-        }])->all()->toArray();
+        }])->with('user')->all()->toArray();
 
         return $orders;
     }
