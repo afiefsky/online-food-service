@@ -35,7 +35,7 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
 
     public function newestOrder()
     {
-        $orders = $this->with('meal')->where('delivery_status', '=', '3')->all()->toArray();
+        $orders = $this->with('meal')->with('user')->where('delivery_status', '=', '3')->all();
 
         return $orders;
     }

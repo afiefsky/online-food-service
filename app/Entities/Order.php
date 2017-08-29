@@ -16,6 +16,11 @@ class Order extends Model
         return $this->belongsTo(UserCustomer::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     // Relationship to Courier Entities = Many to One
     public function courier()
     {
