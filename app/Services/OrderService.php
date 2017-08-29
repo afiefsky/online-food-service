@@ -79,4 +79,12 @@ class OrderService
             return $e->getMessage();
         }
     }
+
+    public function confirmCourier($courier_id, $order_id)
+    {
+        $courier = $this->order->confirmCourier($courier_id, $order_id);
+
+        return $courier;
+    }
+
 }

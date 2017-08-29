@@ -6,6 +6,7 @@ use Illuminate\Container\Container as Application;
 use OFS\Contracts\Repositories\IMealRepository;
 use OFS\Entities\Meal;
 use OFS\Entities\MealPrice;
+use OFS\Entities\Order;
 
 class MealRepository extends AbstractRepository implements IMealRepository
 {
@@ -53,6 +54,13 @@ class MealRepository extends AbstractRepository implements IMealRepository
     public function getAll()
     {
         $meal = $this->with('price')->all()->toArray();
+
+        return $meal;
+    }
+
+    public function getByOrder($order_id)
+    {
+        $meal = Order::with('meal')->where('id', $order_id)->first()->toArray();
 
         return $meal;
     }

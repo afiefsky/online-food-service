@@ -109,4 +109,13 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
             }
             return false;
     }
+
+    public function confirmCourier($courier_id, $order_id)
+    {
+        $order = $this->update([
+            'courier_id' => $courier_id
+        ], $order_id);
+
+        return true;
+    }
 }

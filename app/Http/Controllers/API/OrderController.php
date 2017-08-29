@@ -91,4 +91,13 @@ class OrderController extends APIController
             return $this->responseJson([], 400);
         }
     }
+
+    public function confirmCourier(Request $request, $order_id)
+    {
+        $order = $this->order->confirmCourier($request['courier_id'], $order_id);
+        if ($order) {
+            return $this->responseJson("Success!!", 200);
+        }
+        return $this->responseJson([], 400);
+    }
 }

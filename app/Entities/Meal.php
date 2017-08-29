@@ -24,4 +24,9 @@ class Meal extends Model
     {
         return $this->belongsTo(MealType::class);
     }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }

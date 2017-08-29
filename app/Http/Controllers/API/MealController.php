@@ -41,6 +41,8 @@ class MealController extends APIController
                 ->fit(220, 220)
                 ->save($path)
                 ->destroy();
+            } elseif ($request->has('img_url')) {
+
             } else {
                 $request['img_url'] = '';
             }
@@ -73,6 +75,13 @@ class MealController extends APIController
     public function getAll()
     {
         $meal = $this->meal->getAll();
+
+        return $this->responseJson($meal, 200);
+    }
+
+    public function getByOrder($order_id)
+    {
+        $meal = $this->meal->getByOrder($order_id);
 
         return $this->responseJson($meal, 200);
     }

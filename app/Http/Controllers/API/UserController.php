@@ -224,7 +224,7 @@ class UserController extends APIController
                     ->save($path)
                     ->destroy();
             } elseif ($request->has('avatar')) {
-                
+
             } else {
                 $request['avatar'] = '';
             }

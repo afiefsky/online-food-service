@@ -48,4 +48,11 @@ class MealService {
 
         return $meal;
     }
+
+    public function getByOrder($order_id)
+    {
+        $meal = $this->meal->getByOrder($order_id);
+
+        return $meal;
+    }
 }

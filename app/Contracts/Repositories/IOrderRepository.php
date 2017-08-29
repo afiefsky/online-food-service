@@ -36,4 +36,6 @@ interface IOrderRepository extends RepositoryInterface
      * @return mixed
      */
     public function confirmOrder($data);
+
+    public function confirmCourier($courier_id, $order_id);
 }

@@ -25,4 +25,6 @@ interface IMealRepository extends RepositoryInterface
     public function getOne($meal_id);
 
     public function getAll();
+
+    public function getByOrder($order_id);
 }

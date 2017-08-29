@@ -81,6 +81,7 @@ $api->version('v1', function($api) {
         });
 
         $api->group(['prefix' => 'meal'], function() use ($api) {
+            $api->get('order/{order_id}', 'MealController@getByOrder');
             $url = 'vendor?id={vendor_id}';
             $api->post('create', 'MealController@create');
             $api->get('{meal_id}', 'MealController@getOne');
@@ -114,6 +115,7 @@ $api->version('v1', function($api) {
         $api->group(['prefix' => 'order'], function() use ($api) {
             $api->post('create', 'OrderController@create');
             $api->put('confirm/{order_id}', 'OrderController@confirm');
+            $api->put('courier/confirm/{order_id}', 'OrderController@confirmCourier');
         });
 
         $api->group(['prefix' => 'order'], function() use ($api) {
