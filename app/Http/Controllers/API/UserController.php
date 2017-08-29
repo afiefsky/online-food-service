@@ -223,6 +223,8 @@ class UserController extends APIController
                     ->fit(220, 220)
                     ->save($path)
                     ->destroy();
+            } elseif ($request->has('avatar')) {
+                
             } else {
                 $request['avatar'] = '';
             }

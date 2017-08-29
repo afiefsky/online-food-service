@@ -122,7 +122,7 @@ $api->version('v1', function($api) {
             $api->post('create', 'OrderController@create');
             $api->get('customer/{user_id}', 'OrderController@get');
             $api->get('courier/{user_id}', 'OrderController@getForCourier');
-//            $api->get('new', 'OrderController@newestOrder');
+//            $api->get('new/', 'OrderController@newestOrder');
             $api->get('new', 'UserController@userNewOrder');
             $api->get('vendor/{vendor_id}', 'OrderController@getByVendor');
         });
