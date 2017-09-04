@@ -25,6 +25,8 @@ interface IOrderRepository extends RepositoryInterface
 
     public function getForCourier($courier_id);
 
+    public function searchByDate($start, $end);
+
     /**
      * @param $data
      * @return mixed

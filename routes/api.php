@@ -118,6 +118,7 @@ $api->version('v1', function($api) {
 
         $api->group(['prefix' => 'order'], function() use ($api) {
             $api->get('/', 'OrderController@index');
+            $api->post('/search', 'OrderController@searchByDate');
             $api->get('/index', 'OrderController@index');
             $api->post('create', 'OrderController@create');
             $api->get('customer/{user_id}', 'OrderController@get');
