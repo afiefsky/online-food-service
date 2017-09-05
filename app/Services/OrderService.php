@@ -38,6 +38,13 @@ class OrderService
         return $orders;
     }
 
+    public function searchByDate($start, $end)
+    {
+        $orders = $this->order->searchByDate($start, $end);
+
+        return $orders;
+    }
+
     public function newestOrder()
     {
         $orders = $this->order->newestOrder();

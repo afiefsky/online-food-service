@@ -28,7 +28,20 @@ class OrderRepository extends AbstractRepository implements IOrderRepository
             $q->with('user');
         }])->with(['customer' => function ($q) {
             $q->with('user');
-        }])->all()->toArray();
+        }])->orderBy('id', 'desc')->all()->toArray();
+
+        return $orders;
+    }
+
+    public function searchByDate($start, $end)
+    {
+        $orders = Order::with(['meal' => function ($q) {
+            $q->with('price')->with('vendor');
+        }])->with(['courier' => function ($q) {
+            $q->with('user');
+        }])->with(['customer' => function ($q) {
+            $q->with('user');
+        }])->whereRaw('`created_at` BETWEEN DATE_FORMAT("'.$start.'", "%Y-%m-%d") AND DATE_FORMAT("'.$end.'", "%Y-%m-%d")')->orderBy('id', 'desc')->get()->toArray();
 
         return $orders;
     }

@@ -29,6 +29,15 @@ class OrderController extends APIController
         return $this->responseJson($orders, 200);
     }
 
+    public function searchByDate(Request $request)
+    {
+        $inputs = $request->only(['start', 'end']);
+
+        $orders = $this->order->searchByDate($inputs['start'], $inputs['end']);
+
+        return $this->responseJson($orders, 200);
+    }
+
     public function getByVendor($vendor_id)
     {
         $orders = $this->order->getByVendor($vendor_id);
